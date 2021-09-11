@@ -1,0 +1,25 @@
+#options_wrapper {
+    display : flex;
+    background-color:red;
+      border-radius: 25px;
+  border: 2px solid #327ab7;
+  /*justify-content: space-between;*/
+
+
+}
+
+#container-fluid {
+    display : flex;
+    background-color:red;
+}
+
+#view_profiles_on_alignment_div {
+    background-color: dodgerblue;
+}
+
+#rtp-align {
+    white-space:nowrap;
+    font-family: monospace;
+    transform: scale(0.2);
+
+}

@@ -1,0 +1,70 @@
+{% extends 'admin/master.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block body %}
+
+<div class = "container">
+
+     <form method="POST"    enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+
+            <div class="smallform">
+
+                {{ form.page_size.label }}
+
+
+                {% set f = form.page_size.process_data(prefs['page_size']|string()) %}
+
+
+                {{ form.page_size() }}
+
+                <br>
+                <br>
+
+                {{ form.record_size.label }}
+
+
+                {% set f = form.record_size.process_data(prefs['record_size']|string()) %}
+
+
+                {{ form.record_size() }}
+
+                <br>
+                <br>
+
+                <div class="multi-field-wrapper">
+                <div class="multi-fields">
+                <div class="multi-field">
+                    Reference name to add:
+                <input type="text" name="references">
+                <button type="button" class="remove-field">Remove</button>
+                    <br>
+        </div>
+      </div>
+                    <br>
+    <button type="button" class="add-field">Add another reference name</button>
+                    </div>
+                <br>
+
+            {{ form.submit(class="btn-primary") }}
+            </div>
+         <br>
+
+
+
+ </form>
+
+</div>
+
+
+
+
+{% endblock %}
+
+{% block tail_js %}}
+    {{ super() }}
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/selectize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/form.js') }}"></script>
+
+
+{% endblock %}

@@ -1,0 +1,265 @@
+{% extends 'admin/master.html' %}
+<!--{% import "bootstrap/wtf.html" as wtf %}-->
+
+{% block head_tail %}
+    {{ super() }}
+
+    <script src="../../static/js/d3/d3.min.js"></script>
+    <script src="../../static/js/d3/d3-tip.js"></script>
+    <script src="../../static/js/select.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <script src="../../static/js/selectize.min.js"></script>
+    <script src="../../static/js/selectize_custom.js"></script>
+    <script src="https://s3.eu-central-1.amazonaws.com/cdn.bio.sh/msa/latest/msa.min.gz.js"></script>
+
+
+    <link href="{{ url_for('static', filename='css/selectize.min.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/select.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/genome_detail.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/genome_detail.css') }}" rel="stylesheet">
+
+    {{ JSGlue.include() }}
+
+
+{% endblock %}
+{% block body %}
+
+    <div class="options_wrapper">
+
+
+    <div id="trim_img">
+        <img src="{{ url_for('static', filename = 'img/trim_profile.png') }}"id="trim_diagram" class="center",
+              height="350px" />
+
+        </div>
+
+    <div id="trim_to">
+
+        <br>
+        <br>
+        <br>
+
+        <h4> Trim to Profile</h4>
+
+        <h5>Extract out the sequence content that matches to a Profile in a set of Regions</h5>
+                <br>
+
+
+
+
+        <form method="POST" enctype="multipart/form-data">
+            {{ trim_to_profile_form.hidden_tag() }}
+
+            <div class="smallform">
+
+                {{ trim_to_profile_form.trim_to_region.label }}
+
+                {{ trim_to_profile_form.trim_to_region }}
+
+                <br>
+
+                {{ trim_to_profile_form.trim_to_name.label }}
+
+                {{ trim_to_profile_form.trim_to_name }}
+
+                <br>
+
+
+                {{ trim_to_profile_form.trim_to_profile.label }}
+
+                {{ trim_to_profile_form.trim_to_profile }}
+
+
+                <br>
+
+                {{ trim_to_profile_form.trim_to(class="btn-primary") }}
+
+                <br>
+                <br>
+
+
+            </div>
+        </form>
+
+    </div>
+
+
+    <div id="trim_around">
+
+        <h4> Trim around Profile</h4>
+        <h5>Extract out all the sequence content before, after, or between a Profile in a set of Regions.
+            <br>
+            Can choose whether or not to include the Profile content itself. </h5>
+        <br>
+
+
+
+           <form method="POST" enctype="multipart/form-data">
+            {{ trim_around_profile_form.hidden_tag() }}
+
+            <div class="smallform">
+
+                {{ trim_around_profile_form.trim_around_region.label }}
+
+                {{ trim_around_profile_form.trim_around_region }}
+
+                <br>
+
+                {{ trim_around_profile_form.trim_around_name.label }}
+
+                {{ trim_around_profile_form.trim_around_name }}
+
+                <br>
+
+
+                {{ trim_around_profile_form.trim_around_profile.label }}
+
+                {{ trim_around_profile_form.trim_around_profile }}
+
+
+                <br>
+
+                {{ trim_around_profile_form.section1 }}
+
+                {{ trim_around_profile_form.section1.label }}
+
+                <br>
+
+                {{ trim_around_profile_form.section2 }}
+
+                {{ trim_around_profile_form.section2.label }}
+
+{#                <input type="checkbox" id="section1" name="section1" value="section1">#}
+{#                <label for="section1" id="section1_label"> Include the content from the profile labelled - </label><br>#}
+{#                <input type="checkbox" id="section2" name="section2" value="section2">#}
+{#                <label for="section2" id="section2_label"> Include the content from the profile labelled - </label><br>#}
+
+                <br>
+
+                {{ trim_around_profile_form.trim_around_submit(class="btn-primary") }}
+
+                <br>
+                <br>
+
+
+            </div>
+        </form>
+
+
+
+    </div>
+
+
+        </div>
+
+
+    <script>
+
+        $("#trim_around_profile").val("Content");
+
+                var $select = $('#trim_to_profile').selectize({
+        });
+
+        var $select = $('#trim_around_profile').selectize({
+            delimiter: ',',
+            persist: true,
+            plugins: ['drag_drop', 'remove_button'],
+            maxItems: 3,
+
+            create: false
+        });
+
+        $('select[name="trim_around_profile"]').change(function () {
+            var control = $select[0].selectize;
+            control.addItem("Content")
+
+
+            var sections = $(this).val();
+
+            console.log(sections)
+
+
+            var section_array = new Array();
+
+            for (name in sections) {
+                if (sections[name] != "Content") {
+                    section_array.push(sections[name])
+                }
+
+            }
+
+            if (section_array.length == 0) {
+
+                                        $("label[for='section1']").html("Include the content from the profile " +
+                                            "labelled - ")
+
+                                        $("label[for='section2']").html("Include the content from the profile " +
+                                            "labelled - ")
+
+            }
+
+            else if (section_array.length == 1) {
+                                                        $("label[for='section1']").html("Include the content from the profile " +
+                                            "labelled - " + section_array[0])
+
+                                        $("label[for='section2']").html("Include the content from the profile " +
+                                            "labelled - ")
+
+            }
+
+            else if (section_array.length ==2 ) {
+                                                        $("label[for='section1']").html("Include the content from the profile " +
+                                            "labelled - " + section_array[0])
+
+                                        $("label[for='section2']").html("Include the content from the profile " +
+                                            "labelled - " + section_array[1])
+
+            }
+
+
+
+        });
+
+        $('#trim_around_submit').on('click', function (e) {
+
+            var sections = $('select[name="trim_around_profile"]').val();
+
+            console.log(sections)
+            console.log(sections.length)
+            console.log(sections[1])
+
+            if (sections.length == 1 ) {
+                                e.preventDefault()
+                alert("You need to add a Profile to trim around. Currently you're just selecting everything in the " +
+                    "regions ")
+            }
+
+
+            if (sections.length == 3 && sections[1] != "Content") {
+                                e.preventDefault()
+
+                alert("If you have three sections selected then Content must be in the middle")
+
+            };
+
+
+        });
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+{% endblock %}

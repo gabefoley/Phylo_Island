@@ -1,0 +1,132 @@
+{% extends 'admin/master.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block head_tail %}
+    {{ super() }}
+
+    <script src="../../static/js/d3/d3.min.js"></script>
+    <script src="../../static/js/d3/d3-tip.js"></script>
+    <script src="../../static/js/select.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="../../static/js/selectize.min.js"></script>
+    <script src="../../static/js/selectize_custom.js"></script>
+
+    <link href="{{ url_for('static', filename='css/selectize.min.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/select.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/tracks.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/regions.css') }}" rel="stylesheet">
+    {{ JSGlue.include() }}
+
+
+{% endblock %}
+{% block body %}
+
+    <div class="container">
+
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+
+            <div class="smallform">
+
+
+                <br>
+
+                <br>
+
+                {{ form.include_genome.label }}
+
+                {{ form.include_genome() }}
+
+                <br>
+
+                <br>
+
+                {{ form.exclude_genome.label }}
+
+                {{ form.exclude_genome() }}
+
+                <br>
+
+                <br>
+
+                {{ form.include_hits.label }}
+
+                {{ form.include_hits() }}
+
+                <br>
+
+                <br>
+
+                {{ form.exclude_hits.label }}
+
+                {{ form.exclude_hits() }}
+
+                <br>
+
+                <br>
+
+                <br>
+
+                <br>
+
+                {{ form.submit(class="btn-primary") }}
+            </div>
+            <br>
+
+
+        </form>
+
+    </div>
+
+          <form method="POST" enctype="multipart/form-data">
+            {{ tree_form.hidden_tag() }}
+
+            <div class="smallform">
+
+
+                <br>
+
+                <br>
+
+                {{ tree_form.tree_select_name.label }}
+
+                {{ tree_form.tree_select_name() }}
+
+                <br>
+
+                <br>
+
+
+                {{ tree_form.download_mlgo_tree(class="btn-primary") }}
+            </div>
+            <br>
+
+
+        </form>
+
+
+
+
+    <script>
+
+
+
+
+    </script>
+
+
+
+
+{% endblock %}
+
+{% block tail_js %}}
+    {{ super() }}
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/selectize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/form.js') }}"></script>
+
+
+{% endblock %}

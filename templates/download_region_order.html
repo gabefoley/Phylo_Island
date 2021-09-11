@@ -1,0 +1,159 @@
+{% extends 'admin/master.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block head_tail %}
+    {{ super() }}
+
+    <script src="../../static/js/d3/d3.min.js"></script>
+    <script src="../../static/js/d3/d3-tip.js"></script>
+    <script src="../../static/js/select.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="../../static/js/selectize.min.js"></script>
+    <script src="../../static/js/selectize_custom.js"></script>
+
+    <link href="{{ url_for('static', filename='css/selectize.min.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/select.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/tracks.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/regions.css') }}" rel="stylesheet">
+    {{ JSGlue.include() }}
+
+
+{% endblock %}
+{% block body %}
+
+    <div class="container">
+
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+
+            <div class="smallform">
+
+
+                <br>
+
+                <br>
+
+                {{ form.include_genome.label }}
+
+                {{ form.include_genome() }}
+
+                <br>
+
+                <br>
+
+                {{ form.exclude_genome.label }}
+
+                {{ form.exclude_genome() }}
+
+                <br>
+
+                <br>
+
+                {{ form.include_hits.label }}
+
+                {{ form.include_hits() }}
+
+                <br>
+
+                <br>
+
+                {{ form.exclude_hits.label }}
+
+                {{ form.exclude_hits() }}
+
+                <br>
+
+                <br>
+
+                {{ form.save_to_db.label }}
+
+                {{ form.save_to_db() }}
+
+                <br>
+
+                <br>
+
+                {{ form.submit(class="btn-primary") }}
+            </div>
+            <br>
+
+
+        </form>
+
+        <div id="avail-region_order-div">
+
+            <br>
+            <br>
+
+            Currently available region order dictionaries -
+
+            <br>
+
+            <input type="text" id="avail_region_order">
+            <br>
+            <button name="tagBtn" class="btn-primary" id="update_region_order" type="submit">Update
+                region order dictionaries
+            </button>
+
+
+            <br>
+        </div>
+
+    </div>
+
+    <script>
+
+        $('#avail_region_order').val({{region_order_names | safe}});
+
+        $('#update_region_order').on('click', function (e) {
+
+            region_order = $('#avail_region_order').val().split(',');
+
+
+            $.ajax({
+                url: Flask.url_for("update_region_order"),
+                data: JSON.stringify({
+                    'region_order': region_order
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+                $("[id^='avail_']").selectize({
+            delimiter: ',',
+            create: false,
+            persist: false, plugins: ['remove_button'],
+
+
+        });
+
+
+    </script>
+
+
+
+
+{% endblock %}
+
+{% block tail_js %}}
+    {{ super() }}
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/selectize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/form.js') }}"></script>
+
+
+{% endblock %}

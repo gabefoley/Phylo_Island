@@ -1,0 +1,184 @@
+Pandoraea faecigallinarum
+Streptomyces sp. CNQ766
+Burkholderia sp. Bp9031
+Xenorhabdus mauleonii
+Burkholderia sp. TSV86
+bacterium endosymbiont of Bathymodiolus sp. 5 South
+Lutibaculum baratangense AMV1
+Nitrosospira sp. Nsp11
+Corallococcus sp. CA040B
+Burkholderia pseudomallei
+Yersinia similis
+Microscilla marina
+Paludibacterium purpuratum
+Nannocystis exedens
+Salmonella enterica subsp. enterica serovar Enteritidis
+Sorangium cellulosum
+Sorangium cellulosum So0157-2
+Fischerella muscicola
+Chitinophaga niastensis
+Yersinia pestis
+Alteromonadaceae bacterium 2052S.S.stab0a.01
+Bipolaris oryzae ATCC 44560
+Bacteroidetes bacterium 43-16
+Pseudanabaena sp. PCC 6802
+Okeania hirsuta
+Fibrobacter sp. UWCM
+Luteibacter sp. 9133
+Candidatus Kentron sp. UNK
+Psychrobacter sp. P11G5
+Nitrosomonas sp. Nm166
+Paenibacillus sabinae
+Mycobacterium kansasii
+Maliponia aquimaris
+Streptomyces yanglinensis
+Shewanella sp. WE21
+Bacteroidia bacterium
+Streptomyces sp. CNZ306
+Rhodococcus jostii
+Paraburkholderia phenazinium
+Filimonas sp. YR581
+Paenibacillus durus
+Cordyceps militaris
+Hormoscilla sp. GUM007
+Nitrosomonas ureae
+Xenorhabdus szentirmaii DSM 16338
+Phyllobacterium brassicacearum
+Cedecea neteri
+Proteiniphilum acetatigenes
+Candidatus Methanoperedens nitroreducens
+Proteus mirabilis
+Porphyromonadaceae bacterium KH3CP3RA
+Methyloglobulus morosus
+Cadophora sp. DSE1049
+Comamonadaceae bacterium
+Nitrosospira lacus
+Chitinophagaceae bacterium
+Nitrobacter vulgaris
+Photorhabdus namnaonensis
+Nonomuraea sp. KC310
+Chloroflexi bacterium
+Streptomyces gardneri
+Klebsiella pneumoniae
+weak similarity to
+Candidatus Brocadia caroliniensis
+Actinomadura syzygii
+Micromonospora sp. CNZ322
+Trichoderma gamsii
+Paenibacillus sp. 7197
+Myxococcales bacterium
+Aspergillus parasiticus SU-1
+Salinibacter sp. 10B
+Rahnella sp. NFIX50
+Dyella sp. 4G-K06
+Nonomuraea zeae
+Streptomyces sp. 62
+Streptomyces sp. ISID311
+Sphingobacteriales bacterium
+Photorhabdus temperata subsp. temperata M1021
+Yersinia enterocolitica subsp. palearctica YE-150
+Janthinobacterium sp. CG23_2
+Burkholderia sp. MSMB175
+Lamprocystis purpurea
+thiotrophic endosymbiont of Bathymodiolus puteoserpentis (Logatchev)
+Pandoraea vervacti
+Serratia proteamaculans
+Xenorhabdus budapestensis
+Aspergillus mulundensis
+filamentous cyanobacterium CCP3
+Salmonella enterica subsp. houtenae serovar 16:z4,z32:-- str. RKS3027
+Porphyromonadaceae bacterium NLAE-zl-C104
+Proteus penneri
+Mycobacterium sp. SWH-M3
+Streptomyces sp. BK329
+Fusarium oxysporum f. sp. narcissi
+Podospora anserina S mat+
+Bradymonas sp. YN101
+Halomonas korlensis
+Bacillus toyonensis
+Pseudescherichia vulneris
+Fluviicola sp.
+Photorhabdus luminescens
+Pandoraea pulmonicola
+Burkholderia ubonensis
+Nitrospira sp.
+Polyangium sp. SDU3-1
+Dictyobacter aurantiacus
+Xenorhabdus bovienii
+Botrytis tulipae
+Rhizobium altiplani
+Yoonia maritima
+Oxalobacteraceae bacterium
+Acidovorax cattleyae
+Candidatus Scalindua sp.
+Streptomyces vietnamensis
+Methylomonas sp. 11b
+Arsenophonus endosymbiont of Bemisia tabaci Asia II 3
+Mycobacterium decipiens
+Bradyrhizobium sp. CCGE-LA001
+Burkholderia novacaledonica
+Phialocephala scopiformis
+Ancylomarina sp. SHSM-M15
+Crocosphaera watsonii
+Reichenbachiella versicolor
+Cyanobacteria bacterium UBA8543
+Phialophora attae
+Massilia namucuonensis
+Mesorhizobium sp. UASWS1009
+Mesorhizobium sp.
+Burkholderia sp. MSHR3999
+Cupriavidus sp. GA3-3
+Metarhizium robertsii ARSEF 23
+Salmonella enterica subsp. enterica serovar Eastbourne
+Thalassococcus sp. S3
+Xenorhabdus szentirmaii
+Luteibacter sp. 9135
+Enterobacter cancerogenus
+Burkholderia pseudomallei 406e
+Metarhizium guizhouense ARSEF 977
+Fibrobacter sp. UWB1
+Lysobacter maris
+Photorhabdus thracensis
+Photorhabdus sp. MEX47-22
+Streptomyces sp. CNY243
+Cellulophaga baltica
+Friedmanniomyces simplex
+anaerobic bacterium MO-CFX2
+Proteiniphilum saccharofermentans
+Candidatus Brocadiaceae bacterium S225
+Niastella vici
+Bacillus thuringiensis
+Monosporascus sp. MG133
+Nitrosospira sp. Nsp18
+Photorhabdus laumondii subsp. clarkei
+Alternaria tenuissima
+Yersinia
+Actinoplanes atraurantiacus
+Candidatus Kentron sp. LPFa
+Flavobacterium sp. H122
+Nitrosomonas sp. Is79A3
+Chromobacterium sphagni
+Cyphellophora europaea CBS 101466
+Proteus cibarius
+Actinospica robiniae
+Streptomyces sp. WAC 06738
+Synechococcales bacterium UBA10510
+Chitinophaga sp. BN140078
+Amycolatopsis vancoresmycina
+Kosakonia sacchari SP1
+Photorhabdus temperata subsp. temperata
+Salmonella enterica subsp. enterica
+Raineyella antarctica
+Burkholderia pseudomallei K42
+Penicillium oxalicum 114-2
+Aspergillus flavus NRRL3357
+Streptomyces sp. WAC 05379
+similarity to
+Plesiocystis pacifica SIR-1
+Salmonella enterica subsp. arizonae serovar 40:z4,z23:-
+Sphaerisporangium sp. LHW63015
+Paenibacillus kobensis
+Botrytis cinerea BcDW1
+Labedaea rhizosphaerae
+Enhygromyxa salina
+Sphingobacteriaceae bacterium

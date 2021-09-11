@@ -1,0 +1,114 @@
+
+        hr { border-color: #cccccc; margin: 0; }
+        .no-margins { margin: 0px; }
+        .with-margins { margin: 10px; }
+        .col-centered { float: none; margin: 0 auto; }
+
+body {
+	background: #EEE;
+}
+
+#content {
+	background: white;
+	border: 1px solid #CCC;
+	padding: 15px 20px 30px 35px;
+	margin-top: 15px;
+	margin-right: 10px;
+
+}
+
+h2 {
+	margin-bottom: 15px;
+
+}
+
+#content .row {
+    margin-left: 0px;
+}
+
+/*#myList {*/
+	/*float:right;*/
+  /*}*/
+
+/*#hit_div {*/
+	/*margin-top: 200px;*/
+	/*margin-right: 200px;*/
+
+	/*float:right;*/
+  /*}*/
+
+/* Style disabled checkboxes */
+input[type=checkbox][disabled] + label {
+}
+
+input[type=text][disabled] {
+	background-color: darkgrey;
+}
+
+#brand {
+    display: inline;
+}
+
+.multi-field{
+	font-weight: bold;
+}
+
+.remove-field{
+	font-weight: normal;
+}
+
+ul {
+	margin-top:15px;
+}
+
+
+.search-form {
+	margin: 0 5px;
+}
+
+.search-form form {
+	margin: 0;
+}
+
+.btn-menu {
+    margin: 15px 5px 0 0;
+    float: right;
+
+}
+
+.btn-menu a, .btn-menu input {
+	padding: 7px 16px !important;
+	border-radius: 1px !important;
+	border-color: #ccc;
+}
+
+.btn-primary.disabled, .btn-primary:disabled {
+  color: grey;
+  background-color: darkgrey;
+  border-color: grey;
+}
+
+.btn, textarea, input[type], button, .model-list {
+	border-radius: 0;
+}
+
+.model-list {
+	border-radius: 0;
+}
+
+.nav-pills li > a {
+	border-radius: 0;
+}
+
+.select2-container .select2-choice {
+	border-radius: 0;
+}
+
+a.dropdown-toggle b.caret {
+    margin-left: 5px;
+}
+
+.img_id {
+	max-width:100%;
+	max-height:100%;
+}

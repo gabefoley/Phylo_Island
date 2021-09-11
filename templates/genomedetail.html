@@ -1,0 +1,1028 @@
+{% extends 'admin/master.html' %}
+
+{% block head_tail %}
+    {{ super() }}
+
+    <script src="../../static/js/d3/d3.min.js"></script>
+    <script src="../../static/js/d3/d3-tip.js"></script>
+    <script src="../../static/js/select.js"></script>
+
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="../../static/js/selectize.min.js"></script>
+    <script src="../../static/js/selectize_custom.js"></script>
+
+
+    <link href="{{ url_for('static', filename='css/selectize.min.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/select.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/tracks.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/genome_detail.css') }}" rel="stylesheet">
+
+    {{ JSGlue.include() }}
+
+
+{% endblock %}
+
+{% block body %}
+
+
+    <div id="options_wrapper">
+
+        <div id="select_div">
+            <h3> Select: </h3>
+
+            <br>
+
+                        <form method="POST" enctype="multipart/form-data">
+                {{ genome_by_name_form.hidden_tag() }}
+
+                <div class="smallform">
+
+                                        {{ genome_by_name_form.genome_by_name.label }}
+
+
+                    {{ genome_by_name_form.genome_by_name }}
+
+
+
+                    <br>
+
+
+
+                    {{ genome_by_name_form.search_by_name(class="btn-primary") }}
+
+                    <br>
+                    <br>
+                    <br>
+
+
+                </div>
+            </form>
+
+
+            <form method="POST" enctype="multipart/form-data">
+                {{ page_form.hidden_tag() }}
+
+                <div class="smallform">
+
+                    {{ page_form.untagged }}
+
+
+                    {{ page_form.untagged.label }}
+
+                    <br>
+
+
+                    {{ page_form.limit_genomes }}
+
+                    {{ page_form.limit_genomes.label }}
+
+
+                    {{ page_form.genome_tagged }}
+                    <br>
+
+                    {{ page_form.limit_selection(class="btn-primary") }}
+
+                    <br>
+                    <br>
+
+
+                    {{ page_form.page.label }}
+
+                    {{ page_form.page }}
+
+
+
+                </div>
+            </form>
+
+            <br>
+
+
+            <form method="POST" enctype="multipart/form-data">
+                {{ select_form.hidden_tag() }}
+
+                <div class="smallform">
+
+                    {{ select_form.genome.label }}
+
+                    {{ select_form.genome }}
+
+
+
+                </div>
+        </div>
+        <div id="options_div">
+
+            <h3> Options: </h3>
+
+            {{ select_form.hidden_hits }}
+
+
+            {{ select_form.hidden_hits.label (class_= "genome-search") }}
+
+            <br>
+
+
+            <br>
+
+            {{ select_form.show_hits.label }}
+
+            <br>
+
+            {{ select_form.show_hits }}
+
+
+            <br>
+            <br>
+
+            {{ select_form.show_promoters }}
+
+
+            {{ select_form.show_promoters.label (class_= "genome-search") }}
+
+            <br>
+
+            {{ select_form.show_stop_codons }}
+
+
+            {{ select_form.show_stop_codons.label (class_= "genome-search") }}
+
+            <br>
+
+            {{ select_form.show_existing_features }}
+
+
+            {{ select_form.show_existing_features.label (class_= "genome-search") }}
+
+            <br>
+
+            <br>
+
+            </form>
+        </div>
+        <div id="regions_div">
+            <br>
+            <br>
+
+            <form method="POST" enctype="multipart/form-data">
+                {{ region_form.hidden_tag() }}
+
+                <div class="region_form">
+                    {{ region_form.showA1 }}
+                    {{ region_form.showA1.label (class_= "genome-search") }}
+                    <br>
+                    {{ region_form.showA2 }}
+                    {{ region_form.showA2.label (class_= "genome-search") }}
+                    <br>
+                    {{ region_form.showTcdA1 }}
+                    {{ region_form.showTcdA1.label (class_= "genome-search") }}
+                    <br>
+                    {{ region_form.showTcB }}
+                    {{ region_form.showTcB.label (class_= "genome-search") }}
+                    <br>
+                    {{ region_form.showTcC }}
+                    {{ region_form.showTcC.label (class_= "genome-search") }}
+                    <br>
+                    {{ region_form.showChitinase }}
+                    {{ region_form.showChitinase.label (class_= "genome-search") }}
+                    <br>
+                    {{ region_form.showregion1 }}
+                    {{ region_form.showregion1.label (class_= "genome-search") }}
+                    <br>
+
+                    {{ region_form.show_regions }}
+                </div>
+            </form>
+
+
+        </div>
+
+    </div>
+
+    <br>
+
+
+
+    <div class="scrollable">
+
+
+        <div id="genome">
+            <div id="circularchart"></div>
+            <div id="linearchart"></div>
+        </div>
+
+        <div id="tagging_div">
+
+
+            <div id="edit_tags">
+
+                <h3> Tag hits: </h3>
+                Tag to add <input id="tag2add" type="text" value="">
+                <br>
+                <br>
+
+                <button name="tagBtn" class="btn-primary" id="tag_hit" type="submit">Add tag</button>
+
+                <button name="tagBtn" class="btn-primary" id="hide_hit" type="submit">Hide hit</button>
+
+
+                <button name="tagBtn" class="btn-primary" id="delete_hit" type="submit">Delete hit</button>
+                <br>
+                <br>
+
+                <!--<button name="tagBtn" class="btn-primary" id="tag_genome" type="submit">Tag genome</button>-->
+                <!--<button name="tagBtn" class="btn-primary" id="clear_genome_tags" type="submit">Clear all genome tags</button>-->
+
+                <!--<br>-->
+                <!--<br>-->
+                <button name="tagBtn" class="btn-primary" id="associate_hits" type="submit">Associate A1 / A2 region
+                </button>
+
+                <br>
+                <br>
+
+                <h3> Selected hits: </h3>
+                <div id="myList">
+                </div>
+
+                <div id="associated_hits">
+                    <h3>Associated hits:</h3>
+                    <input type="text" id="input-assoc">
+                    <button name="tagBtn" class="btn-primary" id="update-assoc" type="submit">Update associated hits
+                    </button>
+                </div>
+
+
+            </div>
+
+            <div id="current_tags">
+                <div id="genome_tag">
+
+                    <h3> Tag genome: </h3>
+                    {{ genome_name | safe }} has the following tags:
+                    <br>
+                    <input type="text" id="input-tags">
+                    <button name="tagBtn" class="btn-primary" id="tag_genome" type="submit">Update genome tags</button>
+                </div>
+                <br>
+                <br>
+
+
+                <h3>Current tagged hits:</h3>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    </div>
+
+
+
+
+    <script>
+
+        var tracks = {{tracks | safe }};
+
+
+        var genomesize = "{{genomesize | safe}}";
+
+    </script>
+    <script type="text/javascript" src="../../static/js/circularplot.js"></script>
+    <script type="text/javascript" src="../../static/js/linearplot.js"></script>
+    <script type="text/javascript" src="../../static/js/linearbrush.js"></script>
+    <script type="text/javascript" src="../../static/js/lineardemo.js"></script>
+    <script type="text/javascript" src="../../static/js/circularsample.js"></script>
+
+    {% if hidden_type == true %}
+        <script>
+            $("#hidden_hits").prop('checked', true);
+
+        </script>
+
+    {% else %}
+        <script>
+            $("#hidden_hits").prop('checked', false);
+
+        </script>
+
+    {% endif %}
+
+        {% if show_promoters == true %}
+        <script>
+            $("#show_promoters").prop('checked', true);
+
+        </script>
+
+    {% else %}
+        <script>
+            $("#show_promoters").prop('checked', false);
+
+        </script>
+
+    {% endif %}
+
+            {% if show_stop_codons == true %}
+        <script>
+            $("#show_stop_codons").prop('checked', true);
+
+        </script>
+
+    {% else %}
+        <script>
+            $("#show_stop_codons").prop('checked', false);
+
+        </script>
+
+    {% endif %}
+
+                {% if show_existing_features == true %}
+        <script>
+            $("#show_existing_features").prop('checked', true);
+
+        </script>
+
+    {% else %}
+        <script>
+            $("#show_existing_features").prop('checked', false);
+
+        </script>
+
+    {% endif %}
+
+
+    {% if untagged == true %}
+        <script>
+            $("#untagged").prop('checked', true);
+            $("#genome_tagged").prop("disabled", true);
+            $("#show_tagged_genome").prop("disabled", true);
+            $("#limit_genomes").prop({"disabled": true, 'checked': false});
+            $("#limit_selection").prop({"disabled": true});
+
+
+        </script>
+
+    {% else %}
+        <script>
+            $("#untagged").prop('checked', false);
+            $("#limit_genomes").prop("disabled", false);
+
+        </script>
+
+    {% endif %}
+
+    {% if limit_genomes == true %}
+        <script>
+
+            $("#untagged").prop('checked', false);
+            $("#limit_genomes").prop({'checked': true});
+
+            $("#genome_tagged").prop("disabled", false);
+            $("#limit_genomes").prop("disabled", false);
+
+
+        </script>
+
+    {% else %}
+        <script>
+
+            $("#limit_genomes").prop({'checked': false});
+            $("#limit_selection").prop({"disabled": true});
+
+
+        </script>
+
+    {% endif %}
+
+
+
+
+    <script>
+
+        console.log('untagged was ')
+        console.log("{{untagged}}")
+
+        console.log('limit_genomes was ')
+        console.log("{{limit_genomes}}")
+
+        var associated_dict =
+        {{associated_dict | tojson }}
+
+        var swapped_assoc_dict = swap(associated_dict)
+
+
+        // Populate the genome tags field
+        $('#input-tags').val({{genome_tags | safe}});
+        $('#input-assoc').val(Object.values(associated_dict));
+
+
+        // Create any hit tags fields needed
+
+        var hit_tags = {{hit_tags | tojson }};
+
+
+        hit_count = 1
+
+        console.log(hit_tags)
+        //
+        for (const hit_tag in hit_tags) {
+            console.log('hit tag is')
+            console.log(hit_tag)
+            console.log(hit_tags[hit_tag])
+            if (hit_tags[hit_tag][1] != "") {
+                console.log('pineapple')
+
+                $('#current_tags').append("" +
+                    "<div id ='input-name-" + hit_tag + "' >" + hit_tags[hit_tag][0] +
+                    "<br>" +
+                    "<input type='text' id='input-tags-" + hit_tag + "'>" +
+                    "<button name='tagBtn' class='btn-primary'id='tag_hit_current-" + hit_tag +
+                    "'type='submit'>Update hit tags</button>" +
+                    "</div>" +
+                    "<br>");
+
+                $('#input-tags-' + hit_tag).val(hit_tags[hit_tag][1]);
+            }
+
+
+            hit_count += 1
+
+        }
+
+
+        console.log("CHECKED REGIONS IS")
+        console.log("{{checked_regions | safe}}")
+
+        var r =
+        {{checked_regions | safe}}
+
+        for (var i = 0; i < r.length; i++) {
+//        console.log(r[i])
+            $('#show' + r[i]).prop('checked', true)
+        }
+
+        $('#limit_genomes').on('click', function (e) {
+
+            if ($('#limit_genomes').is(':checked')) {
+
+                $("#genome_tagged").prop("disabled", false);
+                $("#limit_selection").prop("disabled", false);
+
+            }
+            else {
+
+                $("#genome_tagged").prop("disabled", true);
+                $("#limit_selection").prop("disabled", true);
+
+                submit_details('untagged')
+
+            }
+        });
+
+
+        var genome = "{{ genome.id |safe }}"
+        var genome_name = "{{ genome.name |safe }}"
+        var genome_species = "{{ genome.species | safe}}"
+
+
+        $('#show_hits').val("{{hit_type | safe }}")
+
+        console.log('genome choice is ')
+        console.log('{{genome.id}}')
+
+        var suspend = true;
+
+        $('#page').val("{{page_selected | safe }}")
+        $('#genome').val("{{genome.id}}")
+        $('#genome_tagged').val("{{genome_tagged | safe}}")
+
+        console.log('genome tagged was')
+        console.log("{{genome_tagged | safe}}")
+
+
+        var suspend = false;
+
+        function collect_details() {
+
+            var checkedregions = [];
+            $("input[name^='show']:checked").each(function () {
+                checkedregions.push($(this).attr('name').split("show")[1].trim());
+            });
+
+            console.log('what is tigers')
+            console.log("{{ genome.id |safe }}")
+            console.log($('#genome').val())
+
+            var genome = $('#genome').val()
+            var show_hits = $('#show_hits').val()
+            var hidden_hits = $('#hidden_hits').is(":checked")
+            var untagged = $('#untagged').is(":checked")
+            var limit_genomes = $('#limit_genomes').is(":checked")
+            var genome_tagged = $('#genome_tagged').val()
+
+            var page_choice = $('#page').val()
+            var show_promoters = $('#show_promoters').is(":checked")
+            var show_stop_codons = $('#show_stop_codons').is(":checked")
+            var show_existing_features = $('#show_existing_features').is(":checked")
+
+
+
+            return [genome, show_hits, hidden_hits, checkedregions, untagged, limit_genomes, genome_tagged,
+                page_choice, show_promoters, show_stop_codons, show_existing_features]
+
+        }
+
+        function submit_details(passed_from) {
+
+            console.log('got to submit details')
+
+            var details = collect_details()
+            genome = details[0];
+            show_hits = details[1];
+            hidden_hits = details[2];
+            checked_regions = details[3];
+            untagged = details[4];
+            limit_genomes = details[5];
+            genome_tagged = details[6];
+
+            page_choice = details[7];
+                        show_promoters = details[8];
+
+                                    show_stop_codons = details[9];
+                                    show_existing_features = details[10];
+
+
+
+            $.ajax({
+
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                url: "{{  url_for ('show_hits')}}",
+                data: JSON.stringify({
+                    'genome': genome,
+                    'hits': show_hits,
+                    'hidden_type': hidden_hits,
+                    'checked_regions': checked_regions,
+                    'untagged': untagged,
+                    'limit_genomes': limit_genomes,
+                    'genome_tagged': genome_tagged,
+                    'page_choice': page_choice,
+                    'show_promoters': show_promoters,
+                    'show_stop_codons': show_stop_codons,
+                    'show_existing_features' : show_existing_features,
+                    'passed_from': passed_from
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                traditional: "true",
+                success: function (response) {
+
+                    console.log('bamboozled')
+
+                    window.location.reload();
+
+
+                }
+
+
+            });
+        }
+
+
+        $('#limit_selection').on('click', function (e) {
+            e.preventDefault();
+
+            submit_details('limit_selection')
+
+        });
+
+
+        $('#show_regions').on('click', function (e) {
+            e.preventDefault();
+
+            console.log('clicked show regions')
+            submit_details('show_regions')
+
+        });
+
+
+        $('#untagged').on('change', function (e) {
+
+            submit_details('untagged')
+
+        });
+
+        $('#page').on('change', function (e) {
+            if (suspend) {
+                return;
+            }
+            submit_details('page')
+
+        });
+
+
+        $('#hidden_hits').on('change', function (e) {
+
+            submit_details('hidden_hits')
+
+        });
+
+        $('#show_promoters').on('change', function (e) {
+
+            submit_details('show_promoters')
+
+        });
+
+             $('#show_stop_codons').on('change', function (e) {
+
+            submit_details('show_stop_codons')
+
+        });
+
+        $('#show_existing_features').on('change', function (e) {
+
+            submit_details('show_existing_features')
+
+        });
+
+        $('#search_by_name').on('click', function (e) {
+
+
+            submit_details('search_by_name')
+
+        });
+
+
+
+        $('#show_hits').on('change', function (e) {
+
+            e.preventDefault();
+            console.log('clicked show hits')
+            submit_details('show_hits')
+        });
+
+
+        $('#genome').on('change', function (e) {
+            if (suspend) {
+                console.log('chog')
+                return;
+
+                ;
+            }
+
+            console.log(suspend)
+            console.log('big bog')
+            submit_details('genome')
+
+
+        });
+
+        $("[id^='tag_hit_current']").on('click', function (e) {
+
+            console.log(e)
+            clicked = e.target;
+            hit_id = clicked.id.split("-")[1]
+            console.log(hit_id)
+            hit_tags = $("#input-tags-" + hit_id).val();
+            if (hit_tags == null) {
+                hit_tags = []
+            }
+
+            hit_name = $("#input-name-" + hit_id).html().split("<br>")[0];
+
+            console.log(hit_name)
+
+            $.ajax({
+                url: Flask.url_for("update_hit_tags"),
+                data: JSON.stringify({
+                    'genome': genome,
+                    'genome_name': genome_name,
+                    'genome_species': genome_species,
+                    'hit_name': hit_name,
+                    'hit_id': hit_id,
+                    'hit_tags': hit_tags
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+
+        $('#tag_genome').on('click', function (e) {
+
+
+            tag2add = $("#input-tags").val();
+
+            console.log('adding')
+            console.log(tag2add)
+
+
+            $.ajax({
+                url: Flask.url_for("tag_genome"),
+                data: JSON.stringify({
+                    'genome': genome, 'genome_name': genome_name, 'genome_species': genome_species, 'tag2add': tag2add
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+        $('#clear_genome_tags').on('click', function (e) {
+
+
+            $.ajax({
+                url: Flask.url_for("clear_genome_tags"),
+                data: JSON.stringify({
+                    'genome': genome, 'genome_name': genome_name, 'genome_species': genome_species,
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+        $('#hide_hit').on('click', function (e) {
+//        e.preventDefault();
+//        console.log('clicked hide hit')
+
+//        var genome = "{{ genome.id |safe }}"
+//        var genome_name = "{{ genome.name |safe }}";
+
+            tag2add = 'hidden';
+
+
+
+
+            $.ajax({
+                url: Flask.url_for("tag_hit"),
+                data: JSON.stringify({
+                    'genome': genome,
+                    'genome_name': genome_name,
+                    'genome_species': genome_species,
+                    'hits': selected,
+                    'tag2add': tag2add
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+                    console.log('bamboozled')
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+
+        $('#tag_hit').on('click', function (e) {
+//        e.preventDefault();
+//        console.log('clicked tag hit')
+
+//        var genome = "{{ genome.id |safe }}"
+//        var genome_name = "{{ genome.name |safe }}";
+
+            tag2add = $("#tag2add").val();
+
+
+            $.ajax({
+                url: Flask.url_for("tag_hit"),
+                data: JSON.stringify({
+                    'genome': genome,
+                    'genome_name': genome_name,
+                    'genome_species': genome_species,
+                    'hits': selected,
+                    'tag2add': tag2add
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+                    console.log('bamboozled')
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+        $('#delete_hit').on('click', function (e) {
+
+
+            $.ajax({
+                url: Flask.url_for("delete_hit"),
+                data: JSON.stringify({
+                    'genome': genome, 'genome_name': genome_name, 'genome_species': genome_species, 'hits': selected
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+                    console.log('bamboozled')
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+
+        $('#associate_hits').on('click', function (e) {
+            console.log('clicked associate hits')
+
+
+            if (Object.keys(selected).length != 2) {
+                alert("Can only associate between 2 regions at a time")
+            }
+
+            else {
+
+                console.log(selected[0])
+            }
+
+
+            $.ajax({
+                url: Flask.url_for("associate_hits"),
+                data: JSON.stringify({
+                    'genome': genome,
+                    'genome_id': genome.id,
+                    'genome_name': genome_name,
+                    'genome_species': genome_species,
+                    'hits': selected,
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+                    console.log('bamboozled')
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+        $('#update-assoc').on('click', function (e) {
+
+            console.log('swapped assoc dict')
+            console.log(swapped_assoc_dict)
+
+            original_assoc = Object.keys(associated_dict)
+            console.log('original assoc')
+
+
+            console.log(original_assoc)
+
+            remaining_assoc = $("#input-assoc").val().split(',');
+
+            console.log('remaining assoc')
+
+            console.log(remaining_assoc)
+
+            current_assoc = []
+
+            for (const assoc of remaining_assoc) {
+
+                console.log('croc')
+                console.log(assoc)
+
+                current_assoc.push(swapped_assoc_dict[assoc])
+            }
+
+
+            console.log(current_assoc)
+
+            var remove_assoc = original_assoc.filter(x => !current_assoc.includes(x));
+
+
+            $.ajax({
+                url: Flask.url_for("update_assoc_hits"),
+                data: JSON.stringify({
+                    'remove_assoc': remove_assoc
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+                    console.log('bamboozled')
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+        $("[id^='input-tags']").selectize({
+            delimiter: ',',
+            persist: false, plugins: ['remove_button'],
+
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+        });
+
+        $('#input-assoc').selectize({
+            delimiter: ',',
+            create: false,
+            persist: false, plugins: ['remove_button'],
+
+
+        });
+
+
+        $('#genome_tagged').selectize({
+            delimiter: ',',
+            persist: false, plugins: ['remove_button'],
+            maxItems: 1,
+
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+
+
+        });
+
+
+        function swap(json) {
+            var ret = {};
+            for (var key in json) {
+                ret[json[key]] = key;
+            }
+            return ret;
+        }
+
+
+    </script>
+
+{% endblock %}
+
+
+

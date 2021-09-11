@@ -1,0 +1,88 @@
+
+{% extends 'admin/master.html' %}
+{% block head %}
+    {{ super() }}
+
+            <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+
+            <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.nanogallery2.core.js') }}"></script>
+            <script type="text/javascript" src="{{ url_for('static', filename='js/custom_nanogallery.js') }}"></script>
+
+
+            {{ JSGlue.include() }}
+
+
+
+            <!-- nanogallery2 -->
+            <link href="{{ url_for('static', filename='css/nanogallery2.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+
+
+              <h1>
+
+
+              </h1>
+
+                <button type="button" id="btn_del">Delete selection</button>
+                <button type="button" id="btn_select_mode">Switch selection mode on/off</button>
+
+                Search in title: <input id="ngy2search" type="text" value="demo">
+                 and in tags: <input id="ngy2search2" type="text" value="stones">
+                <button type="button" id="btnsearch2">Search</button>
+
+                Tag to add <input id="tag2add" type="text" value="">
+
+                    <button name="tagBtn" id="tagBtn" type="submit">Add tag</button>
+
+
+              <!-- ### position of the gallery ### -->
+              <div id="my_nanogallery2">
+
+
+              </div>
+
+
+              <script>
+                 //noinspection UnterminatedStatementJS
+                 jQuery(document).ready(function () {
+
+                     console.log('reloader')
+
+                    jQuery("#my_nanogallery2").nanogallery2( {
+                        <!-- ### gallery settings ### -->
+                        thumbnailHeight:  150,
+                        thumbnailWidth:   150,
+                        thumbnailSelectable: true,
+                        itemsBaseURL:     "{{ url_for('static', filename='user_images/') }}",
+                        galleryDisplayMode: 'moreButton',
+
+                        <!-- ### gallery content ### -->
+
+                        items: {{ items | safe  }}
+                      });
+
+
+                  });
+
+
+
+
+              </script>
+
+
+
+
+
+
+
+{% endblock %}
+
+
+{% block tail_js %}
+
+{% endblock %}

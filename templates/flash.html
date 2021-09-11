@@ -1,0 +1,29 @@
+
+        {% for error in get_flashed_messages(with_categories=true, category_filter=["error"]) %}
+        <div class="alert alert-dismissable alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ error[1] }}
+        </div>
+        {% endfor %}
+        {% for info in get_flashed_messages(with_categories=true, category_filter=["info"]) %}
+        <div class="alert alert-dismissable alert-info">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ info[1] }}
+        </div>
+        {% endfor %}
+
+        {# Message is the default category called if messages weren't assigned a category #}
+
+        {% for info in get_flashed_messages(with_categories=true, category_filter=["message"]) %}
+        <div class="alert alert-dismissable alert-info">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ info[1] }}
+        </div>
+        {% endfor %}
+
+        {% for success in get_flashed_messages(with_categories=true, category_filter=["success"]) %}
+        <div class="alert alert-dismissable alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{ success[1] }}
+        </div>
+        {% endfor %}

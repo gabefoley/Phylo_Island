@@ -1,0 +1,8 @@
+mysqladmin -p create phyloisland
+mysql -p phyloisland < biosqldb-mysql.sql
+
+sudo mysql -p
+
+GRANT ALL on phyloisland.* to 'pi'@'localhost';
+
+run 'phyloinit.py'

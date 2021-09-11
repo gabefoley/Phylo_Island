@@ -1,0 +1,194 @@
+{% extends 'admin/master.html' %}
+<!--{% import "bootstrap/wtf.html" as wtf %}-->
+
+{% block head_tail %}
+    {{ super() }}
+
+    <script src="../../static/js/d3/d3.min.js"></script>
+    <script src="../../static/js/d3/d3-tip.js"></script>
+    <script src="../../static/js/select.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="../../static/js/selectize.min.js"></script>
+    <script src="../../static/js/selectize_custom.js"></script>
+
+    <link href="{{ url_for('static', filename='css/selectize.min.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/select.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/tracks.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/genome_detail.css') }}" rel="stylesheet">
+    {{ JSGlue.include() }}
+
+
+{% endblock %}
+{% block body %}
+
+    <div id="options_wrapper">
+
+    <div id="tree_select_div">
+
+        <form method="POST" enctype="multipart/form-data">
+            {{ tree_select_form.hidden_tag() }}
+
+            <div class="smallform">
+
+                {{ tree_select_form.tree_select_name.label }}
+
+                {{ tree_select_form.tree_select_name }}
+
+                <br>
+
+                {{ tree_select_form.profiles.label }}
+
+                {{ tree_select_form.profiles }}
+
+                <br>
+
+                {{ tree_select_form.region_order.label }}
+
+                {{ tree_select_form.region_order }}
+
+                <br>
+
+                {{ tree_select_form.sequence_content.label }}
+
+                {{ tree_select_form.sequence_content }}
+
+                <br>
+
+
+                {{ tree_select_form.full_names }}
+
+                {{ tree_select_form.full_names.label }}
+
+
+                <br>
+
+                {{ tree_select_form.collapse_on_genome_tags }}
+
+                {{ tree_select_form.collapse_on_genome_tags.label }}
+
+
+                <br>
+
+                                {{ tree_select_form.display_circular }}
+
+                {{ tree_select_form.display_circular.label }}
+
+
+                <br>
+
+                                {{ tree_select_form.display_circular_180 }}
+
+                {{ tree_select_form.display_circular_180.label }}
+
+
+                <br>
+
+                {{ tree_select_form.submit(class="btn-primary") }}
+
+                <br>
+                <br>
+
+
+            </div>
+        </form>
+
+    </div>
+
+        <div id="tree_download_div">
+
+                   <form method="POST" enctype="multipart/form-data">
+            {{ tree_download_form.hidden_tag() }}
+
+            <div class="smallform">
+
+                {{ tree_download_form.tree.label }}
+
+                {{ tree_download_form.tree }}
+
+
+
+                <br>
+
+                {{ tree_download_form.download_tree(class="btn-primary") }}
+
+                <br>
+                <br>
+
+
+            </div>
+        </form>
+
+
+
+        </div>
+
+
+            <div id="species_tree_div">
+
+                   <form method="POST" enctype="multipart/form-data">
+            {{ species_tree_form.hidden_tag() }}
+
+            <div class="smallform">
+
+                {{ species_tree_form.tree.label }}
+
+                {{ species_tree_form.tree }}
+
+
+
+                <br>
+
+                {{ species_tree_form.make_tree(class="btn-primary") }}
+
+                <br>
+                <br>
+
+
+            </div>
+        </form>
+
+
+
+        </div>
+
+        </div>
+
+
+        <div id="tree_img">
+
+
+            <img id="img_id" src="">
+
+
+        </div>
+
+
+            <div id="ncbi_tree_img">
+
+
+            <img id="ncbi_img_id" src="">
+
+
+        </div>
+
+        <script>
+            var tree_img = "{{ tree_img | safe }}"
+            $("#img_id").attr("src", tree_img)
+
+            var ncbi_tree_img = "{{ ncbi_tree_img | safe }}"
+            $("#ncbi_img_id").attr("src", ncbi_tree_img)    </script>
+
+
+    </div>
+
+
+
+
+
+
+
+{% endblock %}

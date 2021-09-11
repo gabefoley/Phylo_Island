@@ -1,0 +1,387 @@
+{% extends 'admin/master.html' %}
+<!--{% import "bootstrap/wtf.html" as wtf %}-->
+
+{% block head_tail %}
+    {{ super() }}
+
+    <script src="../../static/js/d3/d3.min.js"></script>
+    <script src="../../static/js/d3/d3-tip.js"></script>
+    <script src="../../static/js/select.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="../../static/js/selectize.min.js"></script>
+    <script src="../../static/js/selectize_custom.js"></script>
+
+    <link href="{{ url_for('static', filename='css/selectize.min.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/select.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/tracks.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/genome_detail.css') }}" rel="stylesheet">
+    {{ JSGlue.include() }}
+
+
+{% endblock %}
+{% block body %}
+
+    <div class="container">
+
+        <h4>Tag genomes as 'Simple'</h4>
+        'Simple' means that they only contain at maximum one of each reference Profile.
+
+        <br>
+        <br>
+
+        <form method="POST" enctype="multipart/form-data">
+            {{ tag_simple_form.hidden_tag() }}
+
+            <div class="smallform">
+
+
+                {{ tag_simple_form.include_genome.label }}
+
+                {{ tag_simple_form.include_genome() }}
+
+                <br>
+                <br>
+
+
+                {{ tag_simple_form.exclude_hits.label }}
+
+                {{ tag_simple_form.exclude_hits() }}
+
+                <br>
+
+                <br>
+
+
+                {{ tag_simple_form.tag_simple(class="btn-primary") }}
+            </div>
+            <br>
+
+
+        </form>
+
+        <div>
+
+
+            <div class="search_for_promoters_div">
+
+                <h4>Search for promoters</h4>
+                Search in the region directly before all the hits for a promoter sequence using this pattern - <br>
+                (TTGACA.{15,25}TATAAT)
+                <br>
+                Meaning we must match TTGACA, then anything for 15 to 25 positions, then we must match TATAAT
+                <br>
+                You can add a number of mismatches you are willing to tolerate.
+
+
+                <br>
+                <br>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {{ search_for_promoters_form.hidden_tag() }}
+
+                    <div class="smallform">
+
+
+                        {{ search_for_promoters_form.mismatch.label }}
+
+                        {{ search_for_promoters_form.mismatch() }}
+
+                        <br>
+                        <br>
+
+
+                        {{ search_for_promoters_form.search_for_promoters(class="btn-primary") }}
+                    </div>
+                    <br>
+
+
+                </form>
+
+                <button name="clear_all_promoters" class="btn-primary" id="clear_all_promoters"
+                        type="submit">Clear all assigned promoters
+                </button>
+
+                <br>
+                <br>
+                <br>
+
+                <br>
+
+
+                <div>
+
+                    <h4> Automatically change tags</h4>
+
+
+                    WARNING: The following is an experimental feature. It updates tags on Genomes and Regions
+                    and will update the tags on Genomes and Regions in the GenomeTags dictionary.
+
+                    <br>
+                    <br>
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {{ update_tags_form.hidden_tag() }}
+
+                        <div class="smallform">
+
+                            {{ update_tags_form.old_tag.label }}
+
+                            {{ update_tags_form.old_tag }}
+
+                            <br>
+
+
+                            {{ update_tags_form.new_tag.label }}
+
+                            {{ update_tags_form.new_tag }}
+
+                            <br>
+
+                            {{ update_tags_form.update_tags(class="btn-primary") }}
+
+
+                        </div>
+                    </form>
+
+                </div>
+
+                <div>
+                    <br>
+
+
+                    <h4> Automatically hide regions</h4>
+
+
+                    <br>
+                    <br>
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {{ auto_hide_form.hidden_tag() }}
+
+                        <div class="smallform">
+
+                            {{ auto_hide_form.hide_include_genome.label }}
+
+                            {{ auto_hide_form.hide_include_genome }}
+
+                            <br>
+
+                            {{ auto_hide_form.hide_exclude_genome.label }}
+
+                            {{ auto_hide_form.hide_exclude_genome }}
+
+                            <br>
+
+
+                            {{ auto_hide_form.auto_hide_region.label }}
+
+                            {{ auto_hide_form.auto_hide_region }}
+
+                            <br>
+
+                            {{ auto_hide_form.hide(class="btn-primary") }}
+
+
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <br>
+
+    <h4> Automatically classify genomes</h4>
+
+
+    WARNING: Currently this will first delete all existing tags and on Genomes and Regions, as well as the contents
+    of the GenomeTags dictionary. It will keep any tags of 'hidden' that you have added to Regions, and the auto
+    classifier will not attempt to use hidden Regions to work out what a Genome classification should be.
+
+    <br>
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ auto_classify_form.hidden_tag() }}
+
+        <div class="smallform">
+
+
+            <br>
+
+            {{ auto_classify_form.auto_classify(class="btn-primary") }}
+
+
+        </div>
+    </form>
+
+    <br>
+
+
+    <br>
+
+    <h4> Test the automatically classified genomes</h4>
+
+
+
+    <form method="POST" enctype="multipart/form-data">
+        {{ auto_classify_test_form.hidden_tag() }}
+
+        <div class="smallform">
+
+            {{ auto_classify_test_form.limit_classify_test_tagged.label }}
+
+            {{ auto_classify_test_form.limit_classify_test_tagged }}
+
+            <br>
+
+            {{ auto_classify_test_form.skip_tags.label }}
+
+            {{ auto_classify_test_form.skip_tags }}
+
+            <br>
+
+
+            <br>
+
+            {{ auto_classify_test_form.auto_classify_test(class="btn-primary") }}
+
+
+        </div>
+    </form>
+
+
+
+    <br>
+
+        <div id="test_results">
+
+    {{ test_results | safe }}
+    </div>
+
+    </div>
+
+
+
+
+
+
+    <script>
+
+        $('#limit_classify_test_tagged').selectize({
+            delimiter: ',',
+            persist: false, plugins: ['remove_button'],
+            maxItems: 1,
+
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+
+
+        });
+
+        $('#clear_all_promoters').on('click', function (e) {
+
+
+            $.ajax({
+                url: Flask.url_for("clear_all_promoters"),
+
+
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+                    window.location.reload();
+                    flash('Cleared')
+
+
+                }
+            });
+
+        });
+
+        $('#auto_classify').on('click', function (e) {
+
+            e.preventDefault();
+
+
+            $.ajax({
+                url: Flask.url_for("auto_classify"),
+
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+
+
+        $('#hide_include_genome').selectize({
+            delimiter: ',',
+            persist: false, plugins: ['remove_button'],
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+
+
+        });
+
+
+        $('#hide_exclude_genome').selectize({
+            delimiter: ',',
+            persist: false, plugins: ['remove_button'],
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+
+
+        });
+
+                $('#skip_tags').selectize({
+            delimiter: ',',
+            persist: false, plugins: ['remove_button'],
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+
+
+        });
+
+
+
+    </script>
+
+
+
+
+
+{% endblock %}

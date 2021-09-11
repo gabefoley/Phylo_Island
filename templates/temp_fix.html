@@ -1,0 +1,74 @@
+{% extends 'admin/master.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block head_tail %}
+{{ super() }}
+
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+{{ JSGlue.include() }}
+
+
+{% endblock %}
+{% block body %}
+
+<div class = "container">
+
+    Click button. Fix database. Woo hoo.
+
+     <form method="POST"    enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+
+            <div class="smallform">
+
+
+                <br>
+
+                <br>
+
+                {{ form.fix_assoc() }}
+
+                <br>
+
+                <br>
+
+
+            </div>
+         <br>
+
+
+
+ </form>
+
+</div>
+
+<script>
+        $('#fix_assoc').on('click', function (e) {
+            e.preventDefault()
+
+            console.log('clicked')
+
+        $.ajax({
+            url: Flask.url_for("temp_assoc_fix"),
+            contentType: 'application/json;charset=UTF-8',
+            type: 'POST',
+            error: function (error) {
+                console.log(error);
+            },
+            success: function (response) {
+
+                window.location.reload();
+
+            }
+        });
+
+    });
+
+</script>
+
+
+
+
+
+
+{% endblock %}
+

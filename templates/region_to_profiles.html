@@ -1,0 +1,173 @@
+{% extends 'admin/master.html' %}
+<!--{% import "bootstrap/wtf.html" as wtf %}-->
+
+{% block head_tail %}
+    {{ super() }}
+
+    <script src="../../static/js/d3/d3.min.js"></script>
+    <script src="../../static/js/d3/d3-tip.js"></script>
+    <script src="../../static/js/select.js"></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="../../static/js/selectize.min.js"></script>
+    <script src="../../static/js/selectize_custom.js"></script>
+    <script src="https://s3.eu-central-1.amazonaws.com/cdn.bio.sh/msa/latest/msa.min.gz.js"></script>
+
+
+    <link href="{{ url_for('static', filename='css/selectize.min.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/select.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/view_profiles.css') }}" rel="stylesheet">
+
+    {{ JSGlue.include() }}
+
+
+{% endblock %}
+{% block body %}
+
+    <div class="options-wrapper">
+
+        <div class="view_profiles_on_alignment_div">
+
+            <form method="POST" enctype="multipart/form-data">
+                {{ view_profiles_on_alignment_form.hidden_tag() }}
+
+                <div class="smallform">
+
+                    {{ view_profiles_on_alignment_form.alignment_name.label }}
+
+                    {{ view_profiles_on_alignment_form.alignment_name }}
+
+                    <br>
+
+                    {{ view_profiles_on_alignment_form.profiles.label }}
+
+                    {{ view_profiles_on_alignment_form.profiles }}
+
+                    <br>
+
+                    {{ view_profiles_on_alignment_form.view_profiles(class="btn-primary") }}
+
+                    <br>
+                    <br>
+
+
+                </div>
+            </form>
+        </div>
+
+        <div id="align-container">
+
+            <div id="rtp-align">
+
+                {% if alignment is not none %}
+
+                    <table style="width:100%">
+                        <tr>
+                            <th>Name</th>
+                            <th>Sequence</th>
+                        </tr>
+
+
+                        {% for name, seq in alignment.items() %}
+                            <tr>
+                                <td>         {{ name }}</td>
+                                <td>                    {{ seq | safe }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+
+            </div>
+        </div>
+
+        <br>
+
+        <br>
+
+        <div class="basic_profile_info_div">
+            <form method="POST" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+
+                <div class="smallform">
+
+                    {{ form.name.label }}
+
+                    {{ form.name }}
+
+                    <br>
+
+                    {{ form.submit(class="btn-primary") }}
+
+                    <br>
+                    <br>
+
+
+                </div>
+            </form>
+
+
+            <div id="rtp-div"></div>
+
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+    var zoomed = false
+
+
+        var region_dict =
+        {{ rtp.region_dict | tojson }}
+        var info = JSON.stringify(region_dict)
+
+        $('#rtp-div').append(" Region searched was " + "{{  rtp.region}}" + "<br><ul>")
+
+
+        for (const [key, val] of Object.entries(region_dict)) {
+
+            console.log(key)
+            console.log(val)
+            var domains = ""
+            for (const [domain, index] of Object.entries(val)) {
+                domains += domain + " at position " + index[0] + ":" + index[1] + " "
+            }
+
+
+            $('#rtp-div').append("<li>" + key.replace("***", ".") + " has these domains " + domains +
+                "</li>")
+        }
+
+        $('#rtp-div').append("<ul>")
+
+
+        $("#rtp-align").click(function () {
+            if (zoomed) {
+                 $("#rtp-align").css("transform", "scale(0.2)");
+                 zoomed = false
+
+            }
+            else {
+                $("#rtp-align").css("transform", "scale(0.9)");
+                zoomed = true
+
+            }
+        });
+
+
+    </script>
+
+
+
+
+
+
+{% endblock %}
+

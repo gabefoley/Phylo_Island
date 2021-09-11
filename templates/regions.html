@@ -1,0 +1,476 @@
+{% extends 'admin/master.html' %}
+<!--{% import "bootstrap/wtf.html" as wtf %}-->
+
+{% block head_tail %}
+    {{ super() }}
+
+    <script src="../../static/js/d3/d3.min.js"></script>
+    <script src="../../static/js/d3/d3-tip.js"></script>
+    <script src="../../static/js/select.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="../../static/js/selectize.min.js"></script>
+    <script src="../../static/js/selectize_custom.js"></script>
+
+    <link href="{{ url_for('static', filename='css/selectize.min.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/select.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/tracks.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/regions.css') }}" rel="stylesheet">
+    {{ JSGlue.include() }}
+
+
+{% endblock %}
+{% block body %}
+
+    <div id="options_wrapper">
+
+        <div id="upload_div">
+
+            <h3>Upload regions</h3>
+
+
+            <form method="POST" enctype="multipart/form-data">
+                {{ upload_form.hidden_tag() }}
+
+                <div class="smallform">
+
+                    {{ upload_form.name.label }}
+
+                    {{ upload_form.name }}
+
+                    <br>
+                    <br>
+
+                    {{ upload_form.file.label }}
+
+                    {{ upload_form.file }}
+
+                    {% if upload_form.file.errors %}
+                        {% for error in upload_form.file.errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    {% endif %}
+
+                    <br>
+
+                    {{ upload_form.upload_submit(class="btn-primary") }}
+
+
+                </div>
+            </form>
+
+
+        </div>
+        <br>
+        <br>
+
+        <div id="profile_div">
+
+            <h3>Profile search</h3>
+
+            <form method="POST" enctype="multipart/form-data">
+                {{ region_form.hidden_tag() }}
+
+                <div class="smallform">
+
+                    {{ region_form.region.label }}
+
+                    {{ region_form.region }}
+
+                    <br>
+                    <br>
+
+                    {{ region_form.profiles.label }}
+
+                    {{ region_form.profiles }}
+
+                    <br>
+                    {{ region_form.search_regions(class="btn-primary") }}
+
+
+                </div>
+            </form>
+
+
+        </div>
+
+        <div id="align_div">
+            <h3>Make alignments</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {{ alignment_form.hidden_tag() }}
+
+                <div class="smallform">
+
+                    {{ alignment_form.name.label }}
+
+                    {{ alignment_form.name }}
+                    <br>
+                    <br>
+
+                    {{ alignment_form.region.label }}
+
+                    {{ alignment_form.region }}
+                    <br>
+
+                    <br>
+
+
+                    {{ alignment_form.tool.label }}
+
+                    {{ alignment_form.tool }}
+
+                    <br>
+                    <br>
+
+
+                    {{ alignment_form.align(class="btn-primary") }}
+
+
+                </div>
+            </form>
+
+        </div>
+
+        <div id="tree_div">
+            <h3>Make trees</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {{ tree_form.hidden_tag() }}
+
+                <div class="smallform">
+
+                    {{ tree_form.name.label }}
+
+                    {{ tree_form.name }}
+                    <br>
+                    <br>
+
+                    {{ tree_form.alignment.label }}
+
+                    {{ tree_form.alignment }}
+                    <br>
+
+                    <br>
+
+
+                    {{ tree_form.tool.label }}
+
+                    {{ tree_form.tool }}
+
+                    <br>
+                    <br>
+
+
+                    {{ tree_form.make_tree(class="btn-primary") }}
+
+
+                </div>
+            </form>
+
+        </div>
+
+        <div id="reroot_tree_div">
+            <h3>Reroot trees</h3>
+            <form method="POST" enctype="multipart/form-data">
+                {{ reroot_tree_form.hidden_tag() }}
+
+                <div class="smallform">
+
+                    {{ reroot_tree_form.tree.label }}
+
+                    {{ reroot_tree_form.tree }}
+                    <br>
+                    <br>
+
+                    {{ reroot_tree_form.rerooted_tree_name.label }}
+
+                    {{ reroot_tree_form.rerooted_tree_name }}
+                    <br>
+                    <br>
+
+                    {{ reroot_tree_form.seq.label }}
+
+                    {{ reroot_tree_form.seq }}
+                    <br>
+                    <br>
+
+                    {{ reroot_tree_form.reroot_tree(class="btn-primary") }}
+
+
+                </div>
+            </form>
+
+        </div>
+
+
+    </div>
+
+    <div id="avail-regions-div">
+
+        <br>
+        <br>
+
+        Currently available regions -
+
+        <br>
+
+        <input type="text" id="avail_regions">
+        <br>
+        <button name="tagBtn" class="btn-primary" id="update_regions" type="submit">Update available regions</button>
+
+
+        <br>
+    </div>
+
+
+            <div id="regions_download_div">
+
+                   <form method="POST" enctype="multipart/form-data">
+            {{ regions_download_form.hidden_tag() }}
+
+            <div class="smallform">
+
+                {{ regions_download_form.regions_to_download.label }}
+
+                {{ regions_download_form.regions_to_download }}
+
+
+
+                <br>
+
+                {{ regions_download_form.download_regions(class="btn-primary") }}
+
+                <br>
+                <br>
+
+
+            </div>
+        </form>
+
+
+
+        </div>
+
+
+
+    <div id="avail-record-to-profiles-div">
+
+        <br>
+        <br>
+
+        Currently available region to profile searches -
+
+        <br>
+
+        <input type="text" id="avail_region_to_profiles">
+        <br>
+        <button name="tagBtn" class="btn-primary" id="update_region_to_profiles" type="submit">Update
+            region to profile searches
+        </button>
+
+
+        <br>
+    </div>
+
+
+    <div id="avail-aligns-div">
+
+        <br>
+        <br>
+
+        Currently available alignments -
+
+        <br>
+
+        <input type="text" id="avail_aligns">
+        <br>
+        <button name="tagBtn" class="btn-primary" id="update_aligns" type="submit">Update alignments</button>
+
+
+        <br>
+    </div>
+
+    <div id="avail-trees-div">
+
+        <br>
+        <br>
+
+        Currently available trees -
+
+        <br>
+
+        <input type="text" id="avail_trees">
+        <br>
+        <button name="tagBtn" class="btn-primary" id="update_trees" type="submit">Update trees</button>
+
+
+        <br>
+    </div>
+
+    <script>
+
+        console.log("{{ region_names | safe }}")
+        console.log("{{ align_names | safe }}")
+
+        $('#avail_regions').val({{region_names | safe}});
+        $('#avail_region_to_profiles').val({{region_to_profile_names | safe}});
+
+        $('#avail_aligns').val({{align_names | safe}});
+
+        $('#avail_trees').val({{tree_names | safe}});
+
+        $('#tree').val("{{tree_to_reroot | safe}}");
+
+
+        $('#tree').on('change', function (e) {
+            tree_choice = $('#tree').val();
+
+            $.ajax({
+                url: Flask.url_for("update_outgroup_choices"),
+                data: JSON.stringify({
+                    'tree_choice': tree_choice
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+        $('#update_regions').on('click', function (e) {
+
+            regions = $('#avail_regions').val().split(',');
+
+
+            $.ajax({
+                url: Flask.url_for("update_regions"),
+                data: JSON.stringify({
+                    'regions': regions
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+        $('#update_region_to_profiles').on('click', function (e) {
+
+            region_to_profiles = $('#avail_region_to_profiles').val().split(',');
+
+
+            $.ajax({
+                url: Flask.url_for("update_region_to_profiles"),
+                data: JSON.stringify({
+                    'region_to_profiles': region_to_profiles
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+        $('#update_aligns').on('click', function (e) {
+
+            aligns = $('#avail_aligns').val().split(',');
+
+
+            $.ajax({
+                url: Flask.url_for("update_aligns"),
+                data: JSON.stringify({
+                    'aligns': aligns
+
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+        $('#update_trees').on('click', function (e) {
+
+            trees = $('#avail_trees').val().split(',');
+
+
+            $.ajax({
+                url: Flask.url_for("update_trees"),
+                data: JSON.stringify({
+                    'trees': trees
+
+                }),
+                contentType: 'application/json;charset=UTF-8',
+                type: 'POST',
+                error: function (error) {
+                    console.log(error);
+                },
+                success: function (response) {
+
+                    window.location.reload();
+
+
+                }
+            });
+
+        });
+
+
+        $("[id^='avail_']").selectize({
+            delimiter: ',',
+            create: false,
+            persist: false, plugins: ['remove_button'],
+
+
+        });
+
+        $('#profiles').selectize({
+            delimiter: ',',
+            persist: false, plugins: ['remove_button'],
+//                   options: "{{labels}}",
+            create: false
+
+        });
+
+
+    </script>
+
+
+
+
+
+{% endblock %}

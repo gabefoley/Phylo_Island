@@ -1,0 +1,136 @@
+{% extends 'admin/master.html' %}
+<!--{% import "bootstrap/wtf.html" as wtf %}-->
+
+{% block head_tail %}
+    {{ super() }}
+
+    <script src="../../static/js/d3/d3.min.js"></script>
+    <script src="../../static/js/d3/d3-tip.js"></script>
+    <script src="../../static/js/select.js"></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="../../static/js/selectize.min.js"></script>
+    <script src="../../static/js/selectize_custom.js"></script>
+    <script src="https://s3.eu-central-1.amazonaws.com/cdn.bio.sh/msa/latest/msa.min.gz.js"></script>
+
+
+    <link href="{{ url_for('static', filename='css/selectize.min.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/select.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/genome_detail.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/genome_detail.css') }}" rel="stylesheet">
+
+    {{ JSGlue.include() }}
+
+
+{% endblock %}
+{% block body %}
+
+    <div class="options-wrapper">
+
+        <form method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+
+            <div class="smallform">
+
+                {{ form.name.label }}
+
+                {{ form.name }}
+
+                <br>
+
+                {{ form.submit(class="btn-primary") }}
+
+                <br>
+                <br>
+
+
+            </div>
+        </form>
+
+                <div id="aln_download_div">
+
+                   <form method="POST" enctype="multipart/form-data">
+            {{ alignment_download_form.hidden_tag() }}
+
+            <div class="smallform">
+
+                {{ alignment_download_form.alignment.label }}
+
+                {{ alignment_download_form.alignment }}
+
+
+
+                <br>
+
+                {{ alignment_download_form.download_alignment(class="btn-primary") }}
+
+                <br>
+                <br>
+
+
+            </div>
+        </form>
+
+
+
+        </div>
+
+
+        <div id="biojs-align-div"></div>
+
+
+    </div>
+
+    <script>
+
+        {% if align_data is not none %}
+
+
+
+            var align_data = $.trim("{{ align_data.alignment.read() | safe  }}");
+
+            console.log(align_data)
+            var trimmed_data = align_data.slice(2, align_data.length - 1);
+            var seqs = msa.io.fasta.parse(trimmed_data);
+
+
+            var opts = {
+                el: document.getElementById("biojs-align-div"),
+                seqs: seqs,
+
+                vis: {
+                    conserv: false,
+                    overviewbox: false
+                },
+
+                zoomer: {
+                    rowHeight: 15, // default = 15
+                    // alignmentWidth: 500,
+                    alignmentHeight: 500,
+                },
+                // smaller menu for JSBin
+                menu: "small",
+                bootstrapMenu: true
+            };
+
+            var m = new msa.msa(opts);
+            m.render();
+
+
+        {% endif %}
+
+
+    </script>
+
+
+
+
+
+
+{% endblock %}
+

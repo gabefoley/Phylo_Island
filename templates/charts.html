@@ -1,0 +1,178 @@
+{% extends 'admin/master.html' %}
+<!--{% import "bootstrap/wtf.html" as wtf %}-->
+
+{% block head_tail %}
+    {{ super() }}
+
+    <script src="../../static/js/d3/d3.min.js"></script>
+    <script src="../../static/js/d3/d3-tip.js"></script>
+    <script src="../../static/js/select.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="../../static/js/selectize.min.js"></script>
+    <script src="../../static/js/selectize_custom.js"></script>
+
+    <link href="{{ url_for('static', filename='css/selectize.min.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/select.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/tracks.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/genome_detail.css') }}" rel="stylesheet">
+    {{ JSGlue.include() }}
+
+
+{% endblock %}
+{% block body %}
+
+    <div class="container">
+
+        <h3>
+            {{ title }}
+        </h3>
+        <div class=chart_div>
+
+
+            <canvas id="chart" width="600" height="400"></canvas>
+
+
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
+            {{ chart_form.hidden_tag() }}
+
+            <div class="smallform">
+
+                {{ chart_form.select_tags.label }}
+
+                {{ chart_form.select_tags }}
+
+                <br>
+
+
+                {{ chart_form.exclude_tags.label }}
+
+                {{ chart_form.exclude_tags }}
+
+                <br>
+
+                {{ chart_form.update_chart(class="btn-primary") }}
+
+
+            </div>
+        </form>
+
+
+    </div>
+
+
+
+
+    <script>
+        // bar chart data
+        var barData = {
+            labels: [
+                {% for item in labels %}
+                    "{{ item }}",
+                {% endfor %}
+            ],
+
+            datasets: [{
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(151,187,205,1)",
+                data: [
+                    {% for item in values %}
+                        "{{ item }}",
+                    {% endfor %}
+                ]
+            }
+            ]
+        }
+
+        // get bar chart canvas
+        var mychart = document.getElementById("chart").getContext("2d");
+
+        steps = 10
+        max = {{max}}
+
+            // draw bar chart
+            new Chart(mychart).Bar(barData, {
+                    scaleOverride: true,
+                    scaleSteps: steps,
+                    scaleStepWidth: Math.ceil(max / steps),
+                    scaleStartValue: 0,
+                    scaleShowVerticalLines: true,
+                    scaleShowGridLines: true,
+                    barShowStroke: true,
+                    scaleShowLabels: true
+                }
+            );
+
+        //             $('#select_tags').val(['tigers']);
+
+        {#      var selected_vals = {{selected_vals | safe}}#}
+        $('#select_tags').val({{selected_vals | safe}});
+        $('#exclude_tags').val({{excluded_vals | safe}});
+
+
+        $('#select_tags').selectize({
+            delimiter: ',',
+            persist: false, plugins: ['remove_button'],
+//                   options: "{{labels}}",
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+
+
+        });
+
+        $('#exclude_tags').selectize({
+            delimiter: ',',
+            persist: false, plugins: ['remove_button'],
+//                   options: "{{labels}}",
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+
+
+        });
+
+        //      var trimmed = $.trim($(selected_vals).text());
+        //      var trimmedArray = selected_vals.split(',');
+        //
+        //      console.log(trimmedArray)
+
+        //    $('#select_tags option').prop('selected', true);
+
+        //      $('#select_tags').selectize({
+        //    maxItems: null,
+        //    valueField: 'id',
+        //    labelField: 'title',
+        //    searchField: 'title',
+        //    plugins: ['remove_button'],
+        //    create: false,
+        //    highlight: true,
+        //
+        //
+        //});
+
+        //      $('#select_tags').val(trimmedArray);
+
+
+    </script>
+
+
+
+
+
+
+{% endblock %}
+

@@ -1,0 +1,517 @@
+{% extends 'admin/master.html' %}
+{% block head_tail %}
+    {{ super() }}
+
+    <link href="{{ url_for('static', filename='css/features.css') }}" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+
+           <h3>15/12/2020</h3>
+    <h4> Check Feature tables </h4>
+
+    <h5>Check feature tables from command line</h5>
+    <ul>
+        <li>
+            Call from the command line with --check_feature_table to read in the downloaded feature tables and add
+            information from existing features if they overlap with features identified as hits in the database.
+        </li>
+        <li>
+            Currently user must manually set the destination of the refseq and genbank folders in the Python file
+        </li>
+    </ul>
+
+        <h5>Visualise existing features on Genome Detail</h5>
+    <ul>
+        <li>
+            Click Show existing features to visualise any existing features found from the --check_feature_table command
+        </li>
+        <li>
+            Features show as grey items below the original items, with names and positions taken from the feature
+            table information.
+        </li>
+    </ul>
+
+     <h3>11/12/2020</h3>
+    <h4> Upload </h4>
+
+    <h5>Upload alignments and trees into Phylo Island</h5>
+    <ul>
+        <li>User can upload alignments and phylogenetic trees made from outside Phylo Island</li>
+    <li> Alignments and Trees can be visualised and used in all the same places as alignments and trees generated
+        by Phylo Island</li>
+    <li> Currently we do not keep track of the program used to make these files</li>
+    <li> Currently the saved name will just match the filename</li>
+    <li> As long as the extant names are consistent, trees can be coloured and annotated in the same way as before.
+    </li>
+    </ul>
+
+    <h4> Trees </h4>
+
+    <h5>Visualise taxonomy and species trees</h5>
+    <ul>
+    <li>Users can now visualise Trees by annotating the common taxonomic groups up the tree for any Tree by
+        clicking Annotate species on the Trees page</li>
+    <li>This takes the existing tree topology and annotates the highest common taxonomic group for all internal
+        nodes</li>
+    <li> It also takes all of the taxonomic groups present in the trees and directly below the annotated
+        tree creates an NCBI species tree</li>
+    </ul>
+
+
+
+        <h3>11/06/2020</h3>
+    <h4> Profiles view </h4>
+
+    <h5>Updates to viewing the results of Profile searches</h5>
+    <ul>
+        <li> Now supports multiple hits per Profile to be visualised on Alignments </li>
+    <li> Overlap between Profile hits is now identified and coloured pink</li>
+    <li> If a scenario arises that would give very odd Profile visualisations (due to complex, overlapping Profiles)
+        the user is now warned via the command line
+    </li>
+    </ul>
+
+    <h3>10/06/2020</h3>
+    <h4> Profiles view </h4>
+
+    <h5>Added features to allow viewing the results of Profile searching in Regions</h5>
+    <ul>
+        <li>Users can search Regions with Profiles via the Region Records section</li>
+        <li>Previously users could only view the results of these searches by adding summaries of them to Trees</li>
+        <li>Now, users can use the new View Profiles section, to get a textual summary of particular
+            Profile searches
+        </li>
+    </ul>
+
+    <h5>Viewing Profile searches on Alignments</h5>
+    <ul>
+        <li>Users can now view the results of Profile searches directly on Alignments</li>
+        <li> The visualisation will take into automatically show the regions of the Profile search, accounting for
+            gaps added to the alignment</li>
+        <li>Currently overlap in Profiles is not supported. If a WARNING is thrown in the command line that Overlap
+            is present, contact the Developers
+        </li>
+    </ul>
+
+    <h3>08/06/2020</h3>
+    <h4> Accessibility </h4>
+
+    <h5>Added features designed to make Phylo Island more usable</h5>
+    <ul>
+        <li>User can now download Regions, and Alignments</li>
+        <li>User can now search directly for Genomes by ID in Genome Detail</li>
+        <li>Writing of images to database is disabled (previously used function)</li>
+
+    </ul>
+
+
+
+    <h3>04/06/2020</h3>
+    <h4> Automatic classification </h4>
+
+    <h5>Automatically hide regions</h5>
+    <ul>
+        <li>User can now automatically hide regions from Genomes</li>
+        <li>Tags to include or exclude can be used so that regions are hidden automatically only from a subset of
+            Genomes
+        </li>
+
+    </ul>
+
+    <h5>Multiple and Single now added to automatic classification</h5>
+    <ul>
+        <li>Automatic classifier now attempts to add 'Multiple' and 'Single' tags to Genomes</li>
+        <li>This behaviour is now tested for in the automatic classifier test</li>
+        <li>It still only suggests a single classification for something tagged as Multiple. So, it recognises it as
+            having multiple islands, but doesn't attempt to classify them all.
+        </li>
+
+    </ul>
+
+
+    <h3>02/06/2020</h3>
+    <h4> Tree visualisation </h4>
+
+    <h5>Added features to tree visualisation</h5>
+    <ul>
+        <li>Sequence content from Regions can now be added to trees</li>
+        <li>Trees can now be displayed as circular and circular (180 degrees)</li>
+        <li>Better handling of errors should still display trees but print WARNINGS to the command line if leaves of
+            the tree are not found in the dictionaries being used to annotate the tree, or if they have conflicting
+            tags in the GenomeTags dictionary
+        </li>
+
+    </ul>
+
+    <h5>Can now visualise ML Gene Order analysis</h5>
+    <ul>
+        <li>User can download the tree and Region order files in the neccescary formats to use <a
+                href="http://geneorder.org"> Maximum Likelihood Gene Order </a> to predict ancestral gene orders from
+            the Download ML Gene Order
+            section
+        </li>
+        <li>Note that trees and region orders should contain matching data</li>
+        <li>After running the ML GO analysis, the output files can be uploaded, saved, and visualised on trees in the
+            Visualise ML Gene Order section.
+        </li>
+
+
+    </ul>
+
+    <h3>01/06/2020</h3>
+    <h5>Added automatically classify genomes to GUI</h5>
+    <ul>
+        <li>Genomes can be automatically classified from Automatic Tagging section</li>
+        <li>This deletes all tags from Genomes, Regions, and the GenomeTags dictionary before it runs</li>
+        <li>Classification test can now be limited to a specific taggit</li>
+
+
+    </ul>
+
+    <h3>28/05/2020</h3>
+    <h5>Automatically change tags</h5>
+    <ul>
+        <li>Automatically change tags now changes the tags on Regions / Hits as well</li>
+        <li>This means it can be used without causing GenomeTags to get out of sync</li>
+    </ul>
+
+    <h5>Added automatically classify genomes test</h5>
+    <ul>
+
+        <li>Test can be run from the Automatic Tagging section</li>
+
+        <li>Added Trim to Profiles and Trim around Profiles.</li>
+    </ul>
+
+    <h3>27/05/2020</h3>
+    <h5>Trim Regions to Profiles</h5>
+    <ul>
+        <li>Added Trim to Profiles and Trim around Profiles.</li>
+        <li>User can now create new Region Records by trimming existing Region Records using Profiles.</li>
+        <li>Examples of types of scenarios that are catered for can be seen in the diagram in the Trim Regions section.
+        </li>
+    </ul>
+
+    <h5>Delete hits</h5>
+    <ul>
+        <li>Added ability to automatically delete all hits in Batch Delete section</li>
+        <li>This clears all hits across all Genomes, as well as the AssociatedRegions dictionary</li>
+        <li>It does not clear the GenomeTags dictionary, so if tags have been applied to Hits, then Delete All Tags
+            should also be used.
+        </li>
+    </ul>
+
+    <h3>26/05/2020</h3>
+    <h4> Search for promoters </h4>
+
+    <h5>Automatically search for promoters</h5>
+    <ul>
+        <li>Added option in automatic tagging to automatically search for promoters in the sequence content
+            directly before a hit for a Region
+        </li>
+        <li> Pattern is hard-coded at the moment, but a number of mismatches that will be tolerated can be provided
+        </li>
+        <li> Information is just stored as a boolean in the hit as to whether or not the Region contained a promoter
+            that
+            matched
+            the pattern
+        </li>
+
+        <li> Added button on same page to automatically clear all promoter information by turning all of the booleans to
+            False
+        </li>
+    </ul>
+    <h5>Visualise promoters</h5>
+
+    <ul>
+        <li>
+            Genome Detail now allows for visualisation of Regions that contained promoters
+        </li>
+        <li> These are visualised as a diamond glyph at the starting position of the Region</li>
+        <li> Promoter visualisations and stop codon visualisations can now be toggled on and off</li>
+
+    </ul>
+
+
+    <h3>25/05/2020</h3>
+    <h5> Start codons </h5>
+    <ul>
+        <li>Fixed a bug where Regions would map to the first location of a hit, not the first start codon</li>
+        <li>Added TTG and GTG as alternative start codons that are searched for</li>
+        <li> When alternative start codons are used, they are corrected to Methionine if choosing to translate to
+            protein when downloading the FASTA file.
+        </li>
+    </ul>
+    <h5> Updated automatic classifier </h5>
+
+    <ul>
+        <li>Updated the currently hard-coded automatic classifier to allow for checking start positions of Regions</li>
+        <li> Created classify test as a pytest test class and a runnable python file, that will check an ABC toxins
+            data set against previously curated classifications.
+        </li>
+    </ul>
+
+
+    <h3>21/05/2020</h3>
+    <h4> Trees </h4>
+
+    <h5>Tree visualisation</h5>
+    <ul>
+        <li>Added option to display full names on trees.</li>
+        <li>Visualise fused Regions (where two or more reference profiles map to the same spot on the genome) as a
+            joined element when the Region Order diagram is added to a Tree visualisation.
+        </li>
+        <li>User can choose to collapse the tree based on the Genome Tags. Tree will be collapsed as far as it
+            can without collapsing a conflicting tag.
+        </li>
+    </ul>
+
+    <h5>Tree downloading</h5>
+    <ul>
+        <li>Trees can now be downloaded from the Trees section.</li>
+    </ul>
+
+
+    <h4> Automatic tagging </h4>
+
+    <h5>Added update tags</h5>
+    <ul>
+        <li>User can now batch update a particular genome tag to another.</li>
+        <li>Note that currently this updates tags on Genomes and doesn't update tags on Regions. However, it will
+            update the tags on Genomes and Regions in the GenomeTags dictionary. So if tags exist on Regions you
+            must currently update those manually
+        </li>
+
+    </ul>
+
+    <br>
+
+    <h3>20/05/2020</h3>
+    <br>
+    <h4> Trees </h4>
+    <h5>Added region order diagrams to trees</h5>
+
+    <ul>
+        <li>User can select a Region Order and add it as a diagram to a generated Tree image
+        </li>
+        <li> Region Order analysis is performed at the Genome level, so their results are matched to the Genome
+            information in trees and can therefore be added to any trees.
+        </li>
+        <li> If a given Tree contains genomes not present in the Region Order they will simply not have the Region
+            Order visualised on the image
+        </li>
+        <li>At the moment, user can either add a Region Order or a Profile search to the Tree image, but not both at
+            once.
+        </li>
+    </ul>
+
+    <h5> Added reroot trees to Region Records section</h5>
+    <ul>
+        <li>User can select a tree and a sequence within that tree to select as an outgroup and reroot the tree on
+            that outgroup.
+        </li>
+        <li> Rerooted trees must have a unique name and are stored in the same Collection and viewed in the same way
+            as any other tree.
+        </li>
+    </ul>
+
+
+
+
+
+    <h3>19/05/2020</h3>
+    <br>
+    <h4> Charts </h4>
+    <h5>Added exclude by tags to charts</h5>
+
+    <ul>
+        <li>User can select tags to include and tags to exclude on the Charts page.</li>
+        <li>Usage example would be if we have tagged every genome as either Single or Multiple, depending on how many
+            islands it contains. User could then include any tags they wanted to get a count for, and exclude
+            Multiple, to return a summary of just the subset of the database tagged Single.
+        </li>
+        <li> Categories will be anything in the `Tags to include` field. If a user chooses something that returns a
+            value of zero it will be displayed as zero. This is possible if, for example, we wish to show all tags
+            added only to genomes tagged with the tag Multiple, but some of the tags we choose to count only occur in
+            genomes if they are tagged with Single. These zero values can be excluded from the chart simply by
+            removing them from the 'Tags to include field.
+        </li>
+    </ul>
+
+    <br>
+    <h4> Automatic Tagging </h4>
+    <h5>Added Automatic Tagging section</h5>
+
+    <ul>
+        <li>User can now automatically tag genomes as 'Simple'</li>
+        <li>'Simple' means that, for each of the reference profiles, the profile appears as a hit in the genome a
+            maximum of one time.
+        </li>
+        <li> User can specify to only search Genomes tagged with certain terms, and to ignore hits within genomes
+            that are tagged with certain terms (by default, 'hidden' hits are ignored).
+        </li>
+        <li>
+            Currently the reference profile 'Chitinase' is hard-coded as a region to not consider, to allow for multiple
+            chitinase hits to exist in a genome and have it still be tagged as 'Simple'. In the future we will allow for
+            users to provide a list of reference profiles to consider during this search.
+        </li>
+    </ul>
+
+    <br>
+
+    <h4> Region Orders </h4>
+    <h5>Added Region Order Records Collection</h5>
+    <ul>
+        <li>User can download the order that Regions occur in a chosen set of genomes and can optionally chose to store
+            it as a dictionary in the newly created
+            Region Order Records Collection.
+        </li>
+        <li> User can store any number of dictionaries, as different filtering conditions will create different lists
+        </li>
+    </ul>
+
+
+
+    <h3>18/05/2020</h3>
+    <br>
+    <h4> Regions </h4>
+    <h5>Added Regions section</h5>
+
+    <ul>
+        <li>User can upload a FASTA file of sequence data on which to perform further analysis.</li>
+        <li>Data is stored in the newly created Regions Record Collection.</li>
+        <li>This data will be able to be generated directly from Genome Records in the future, for now a user must
+            download the data using Download FASTA and then upload it via the Regions page.
+        </li>
+    </ul>
+
+    <h5>Added Profile search (found in Regions section)</h5>
+    <ul>
+        <li>
+            User can select a FASTA file that has been uploaded to Region Records and a set of profiles that have been
+            uploaded to Profile Records. Each profile is searched against each sequence in a Region.
+        </li>
+        <li>
+            The results from searching these regions is stored in the newly created RegionToProfile Collection.
+        </li>
+    </ul>
+
+    <h5>Added Alignment generation (found in Regions section)</h5>
+    <ul>
+        <li>
+            User can select a FASTA file that has been uploaded to Region Records and create an alignment.
+        </li>
+        <li>
+            The results from aligning these regions is stored in the newly created Alignments Collection.
+        </li>
+        <li>
+            At the moment, MAFFT is the only supported alignment program.
+        </li>
+    </ul>
+
+    <h5>Added Tree inference (found in Regions section)</h5>
+    <ul>
+        <li>
+            User can select an alignment that has been uploaded to Alignments and infer a phylogenetic tree.
+        </li>
+        <li>
+            The inferred trees are stored in the newly created Tree Collection.
+        </li>
+        <li>
+            At the moment, FastTree is the only supported tree inference program.
+        </li>
+    </ul>
+
+    <h5>All objects create from Regions section can be deleted from Regions page</h5>
+    <ul>
+        <li>
+            Regions, region to profile searches, alignments, and trees that are created on the Regions page can all
+            be viewed and deleted directly from Regions section.
+        </li>
+    </ul>
+    <br>
+
+    <h4>Alignments</h4>
+
+    <h5>Added Alignments section</h5>
+    <ul>
+        <li>
+            User can select an Alignment and view it using <a href="https://msa.biojs.net/"> MSAViewer (a BioJS
+            component) </a></li>
+
+    </ul>
+    <br>
+
+    <h4>Trees</h4>
+
+    <h5>Added Trees section</h5>
+    <ul>
+        <li>
+            User can select a Tree and view an image of it generated using the <a href="http://etetoolkit
+        .org/docs/latest/index.html"> ETE3 Toolkit </a></li>
+        <li>
+            Trees are automatically coloured by the tags applied to the regions and genomes in Phylo Island
+        </li>
+        <li> If a tree contains a region that has a tag associated with it, it will be coloured by this, otherwise it
+            will
+            be coloured by the tag associated with its genome.
+        </li>
+
+        <li>
+            User can select a Region to Profile record to annotate trees with presence / absence of the domains
+            contained
+            within the Region to Profile record.
+        </li>
+        <li>
+            The Region to Profile record does not need to be generated from the same Region record that the tree is. One
+            advantge of this is that you can perform domain analysis on a set of full length sequences, then add a
+            version of the set of sequences trimmed to an area of interest (active site, specific domain) and perform
+            alignment and tree inference on the trimmed sequences. The Region to Profile information from the full
+            sequences can then be overlaid onto the tree generated from the trimmed sequences.
+        </li>
+
+        <li>
+            Tree images are freshly generated each time, rather than stored, to allow for changes to annotations to be
+            dynamic.
+        </li>
+    </ul>
+    <br>
+
+
+    <h3>16/05/2020</h3>
+    <br>
+    <h4>Limit selection to genomes</h4>
+    <h5>Added limit selection to genomes</h5>
+
+    <ul>
+        <li>Use it by ticking the checkbox, selecting which tag you want to limit to, clicking the “Limit selection”
+            button.
+        </li>
+        <li>Go back to the full records by unchecking the checkbox.</li>
+    </ul>
+
+    <h5>Current limitations with Limit selection to genomes </h5>
+    <ul>
+        <li>
+            Limited to searching for one tag at a time (i.e. can’t search from Genomes tagged “Type1” and “Multiple" at
+            once).
+        </li>
+        <li>
+            Queries are slow when the checkbox is ticked.
+        </li>
+    </ul>
+
+    <br>
+
+    <h4> Feature Log</h4>
+
+    <h5>Added Feature Log</h5>
+    <ul>
+        <li>
+            Updates will be added to this page.
+        </li>
+    </ul>
+
+{% endblock %}

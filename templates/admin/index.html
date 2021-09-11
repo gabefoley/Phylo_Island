@@ -1,0 +1,26 @@
+{% extends 'admin/master.html' %}
+{% block title %}
+Phylo Island
+{% endblock %}
+
+{% block brand %}
+<h2> Phylo Island</h2>
+{% endblock %}
+
+{% block body %}
+{{ super() }}
+<div class="row">
+    <p class="lead">
+
+        Welcome to Phylo Island. Designed to manage sequence records and enable phylogenetic analysis on complex data.
+	<br><br>
+
+	This site is in active development - if you find a bug <a href="mailto:gabriel.foley@uqconnect.edu.au?Subject=Phylo%20Island%20Error" target="_top">please email through </a> what you were doing and which files you were using
+
+	<br><br>
+
+	All feature requests and suggestions please add to <a href="https://trello.com/b/UCQZm2Ig/phylo-island"> the Trello feature board. </a> You'll need to register an account with Trello to make suggestions.
+
+
+</div>
+{% endblock body %}

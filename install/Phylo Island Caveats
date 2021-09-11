@@ -1,0 +1,11 @@
+Suggestions
+
+* Install Studio 3T
+
+Phylo Island Caveats
+
+* Have to place HMMs in the temp folder (They aren't writing correctly)
+* Don't delete the HMM output folders yet (We iterate over them still to get the previous hits)
+* The previous point means that the hit types in Genome Records are wrong (but total numbers are right)
+
+

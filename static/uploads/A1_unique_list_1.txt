@@ -1,0 +1,737 @@
+Pandoraea faecigallinarum
+Xenorhabdus mauleonii
+Burkholderia sp. TSV86
+bacterium endosymbiont of Bathymodiolus sp. 5 South
+Pseudomonas kilonensis
+Pseudomonas mediterranea
+Mariniradius saccharolyticus AK6
+Salmonella enterica subsp. arizonae serovar 62:z4,z23:-
+Yersinia enterocolitica subsp. palearctica YE-150
+Pseudomonas sp. H9
+Burkholderia pseudomallei
+Pseudomonas sp. FDAARGOS_380
+Pseudomonas putida
+Microscilla marina
+Erwinia pyrifoliae
+Bacillus sp. OV166
+Serratia marcescens
+Pseudomonas sp. NFACC32-1
+Pseudomonas sp. ANT_J12
+Chitinophaga niastensis
+Pseudomonas syringae pv. avellanae str. ISPaVe037
+Oxalobacteraceae bacterium
+Pseudomonas soli
+Pseudomonas abietaniphila
+Taibaiella sp. KBW10
+Cyanobacteria bacterium UBA8543
+Luteibacter sp. 9135
+Luteibacter sp. 9133
+Candidatus Kentron sp. UNK
+Pseudomonas sp. GM48
+Pseudomonas sp. Irchel 3A18
+Pseudomonas sp. Fig-3
+Paenibacillus sabinae
+Pseudomonas sp. B35(2017)
+Shewanella sp. WE21
+Brevibacillus sp. CHY01
+Streptomyces sp. CNZ306
+Pseudomonas sp. 31 R 17
+Pseudomonas sp. B11(2017)
+Paraburkholderia phenazinium
+Hormoscilla sp. GUM007
+Nitrosomonas ureae
+Xenorhabdus szentirmaii DSM 16338
+Shewanella denitrificans
+Cedecea neteri
+Pseudomonas sp. PGPPP1
+Candidatus Methanoperedens nitroreducens
+Proteus penneri ATCC 35198
+Proteus mirabilis
+Yersinia similis
+Pseudomonas libanensis
+Burkholderia sp. SRS-46
+Pseudomonas alkylphenolica
+Pseudomonas cichorii JBC1
+Pseudomonas syringae group
+Photorhabdus namnaonensis
+Streptomyces gardneri
+Klebsiella pneumoniae
+Pseudomonas simiae
+Paenibacillus sp. 7197
+Myxococcales bacterium
+Pseudomonas sp. Root562
+Pseudomonas sp. Root569
+Rahnella sp. NFIX50
+Dyella sp. 4G-K06
+Streptomyces sp. 62
+Sphingobacteriales bacterium
+Pseudomonas sp. NP10-3
+Salmonella enterica subsp. enterica
+Pseudomonas sp. 24 E 13
+Achromobacter sp. K91
+thiotrophic endosymbiont of Bathymodiolus puteoserpentis (Logatchev)
+Pseudomonas sp. Choline-02u-1
+Pandoraea vervacti
+Serratia proteamaculans
+Xenorhabdus budapestensis
+Pseudomonas sp. SCPG-7
+Pseudomonas sp. 91RF
+Pseudomonas syringae pv. maculicola
+Pseudomonas sp. NFACC11-2
+Salmonella enterica subsp. houtenae serovar 16:z4,z32:-- str. RKS3027
+Pseudomonas sp. Irchel 3F6
+Pseudomonas sp. URIL14HWK12:I7
+Pseudomonas sp. CBZ-4
+Candidatus Hamiltonella defensa
+Pseudomonas sp. OV508
+Pseudomonas gessardii
+Bacillus toyonensis
+Pseudescherichia vulneris
+Fluviicola sp.
+Pseudomonas sp. QS1027
+Pseudomonas thivervalensis
+Mangrovibacter phragmitis
+Pandoraea pulmonicola
+Burkholderia ubonensis
+Nitrospira sp.
+Pleionea sp. S1-5-21
+Pseudomonas sp. OV341
+Pseudomonas sp. KUIN-1
+Yersinia pestis
+Xenorhabdus bovienii
+Xenorhabdus ishibashii
+Pseudomonas graminis
+Pseudomonas sp. R1-43-08
+Pseudomonas sp. SJZ080
+Pseudomonas sp. TH39
+Salmonella sp. NCTC 7297
+Pseudomonas sp. WCHPs060039
+Pseudomonas sp. R3-52-08
+Pseudomonas sp. Irchel s3h9
+Pseudomonas sp. HMSC08G10
+Pseudomonas sp. OV467
+Burkholderia sp. MSHR3999
+Pseudanabaena sp. PCC 6802
+Blautia producta
+Thalassococcus sp. S3
+Vibrio parahaemolyticus
+Pseudomonas syringae pv. lapsa
+Enterobacter cancerogenus
+Burkholderia sp. MSMB0266
+Lysobacter maris
+Photorhabdus thracensis
+Photorhabdus sp. MEX47-22
+Cellulophaga baltica
+Pseudomonas sp. Ant30-3
+Candidatus Brocadiaceae bacterium S225
+Pseudomonas sp. S3E12
+Pseudomonas sp. R4-34-07
+Pseudomonas sp. NFACC39-1
+Pseudomonas syringae pv. actinidiae
+Bacillus thuringiensis
+Yersinia pestis KIM D27
+Nitrosospira sp. Nsp18
+Actinoplanes atraurantiacus
+Pseudomonas syringae group genomosp. 3
+Pseudomonas sp. H1h
+Proteus cibarius
+Burkholderia sp. MSMB0265
+Pseudomonas sp. KBW05
+Chitinophaga sp. BN140078
+Kosakonia sacchari SP1
+Photorhabdus sp. HUG-39
+Burkholderia pseudomallei K42
+unclassified Burkholderia
+Pseudomonas sp. OV397
+Paenibacillus kobensis
+Mycoavidus cysteinexigens
+Pseudomonas sp. ICMP22404
+Enhygromyxa salina
+Sphingobacteriaceae bacterium
+Pseudomonas sp. PTA1
+Xenorhabdus innexi
+Vibrio campbellii
+Pseudomonas sp. Eur1 9.41
+Proteus sp. CA142267
+Gynurincola endophyticus
+unclassified Cohnella
+Streptomyces sp. CNY243
+Pseudomonas sp. ICMP 19500
+Pseudosphingobacterium domesticum
+Bathymodiolus azoricus thioautotrophic gill symbiont
+Serratia liquefaciens
+Pseudomonas sp. M7D1
+Serratia plymuthica
+Photobacterium damselae
+Pantoea sp. AMG 501
+Proteus sp. TJ1636
+Proteus hauseri
+Paenibacillus sp. FJAT-26967
+Yersinia enterocolitica subsp. palearctica 105.5R(r)
+Candidatus Paraburkholderia kirkii
+Pseudomonas sp. FW104-15G4B
+Pseudomonas sp. NFACC10-1
+Morganella sp. EGD-HP17
+Pseudomonas sp. SGAir0191
+Proteus alimentorum
+Pseudomonas sp. NFACC13-1
+Pseudomonas savastanoi
+Proteus genomosp. 4
+Pseudomonas mandelii PD30
+Pseudomonas sp. SHC52
+Pseudomonas sp. GV091
+Salmonella enterica subsp. houtenae str. CFSAN000557
+Pseudomonas sp. RIT623
+Pseudomonas syringae pv. philadelphi
+Vibrio jasicida
+Proteus sp. TJ1640
+Algoriphagus antarcticus
+Proteus penneri
+Pseudomonas sp. IB20
+Proteus sp. FJ2001126-3
+Deltaproteobacteria bacterium HGW-Deltaproteobacteria-1
+unclassified Photorhabdus
+Photorhabdus asymbiotica
+Pseudomonas sp. DSM 108989
+Pseudomonas moraviensis
+Pseudomonas sp. NS1(2017)
+Pseudomonas sp. FW306-02-H06C
+Enterobacter sp. DC4
+Planomicrobium glaciei
+Herbidospora mongoliensis
+Pseudomonas rhizosphaerae
+Pseudomonas sp. s211(2017)
+Trabulsiella odontotermitis
+Pseudomonas lini
+Rhodanobacteraceae
+Pseudomonas sp. Pf153
+Salmonella enterica subsp. houtenae
+Salmonella enterica subsp. enterica serovar Brandenburg
+Pseudomonas sp. Irchel s3a10
+Pseudomonas sp. Irchel s3a12
+Pseudomonas syringae pv. pisi
+Erwinia sp. ErVv1
+Zetaproteobacteria bacterium
+Pseudomonas frederiksbergensis
+Pseudomonas sp. Irchel s3a18
+Klebsiella aerogenes
+Yersinia pseudotuberculosis
+Kosakonia sp. WCHEs120001
+Pseudomonas batumici
+Chitinophaga polysaccharea
+Pseudomonas syringae pv. avii
+Pseudomonas sp. WCS365
+Microcystis aeruginosa
+Pseudomonas monteilii
+Aliifodinibius roseus
+Pseudomonas agarici
+Bathymodiolus thermophilus thioautotrophic gill symbiont
+Paenibacillus sp. BK033
+Chitinophaga pinensis
+Zavarzinia compransoris
+Shigella sp. FC1967
+Photorhabdus temperata J3
+Pseudomonas syringae pv. maculicola str. M6
+Pseudomonas syringae pv. aptata str. DSM 50252
+Proteus sp. CD3
+Pseudomonas sp. GM79
+Luteibacter sp. 22Crub2.1
+Arsenophonus endosymbiont of Bemisia tabaci
+Streptomyces xanthocidicus
+Photorhabdus luminescens subsp. luminescens
+Pseudomonas sp. SJZ131
+Pseudomonas sp. Irchel s3b6
+Pseudomonas syringae pv. japonica str. M301072
+Pseudomonas sp. NFPP02
+Vibrio owensii
+Pseudomonas sp. LG1E9
+Pseudomonas helmanticensis
+Pseudomonas sp. 43mfcvi1.1
+Pseudomonas syringae pv. atrofaciens
+Burkholderia singularis
+Xenorhabdus sp. KJ12.1
+Arsenophonus nasoniae
+Pandoraea sp. LMG 31118
+Pandoraea sp. LMG 31117
+Sphaerisporangium sp. 7K107
+Pandoraea sp. LMG 31112
+Pseudomonas sp. W15Feb9B
+Pseudomonas chlororaphis
+Pseudomonas amygdali pv. mellea
+Pseudomonas sp. ICMP 460
+Pseudomonas extremorientalis
+Photorhabdus temperata subsp. temperata M1021
+Pseudomonas amygdali pv. mori str. 301020
+Photorhabdus luminescens
+Pseudomonas sp. NFIX46
+Xenorhabdus szentirmaii
+Bacillus cereus group
+Rahnella aquatilis
+Pseudomonas sp. Root401
+Pseudomonas sp. 37 R 15
+Klebsiella oxytoca
+Salmonella enterica subsp. diarizonae
+Herbidospora sakaeratensis
+Pseudomonas sp. CC120222-01a
+Yersinia kristensenii
+Xenorhabdus hominickii
+Arsenophonus endosymbiont of Nilaparvata lugens
+Yersinia sp. IP36721
+Microvirgula sp. AG722
+Pseudomonas japonica
+Enterobacteriaceae bacterium
+Burkholderia stagnalis
+Pseudomonas viridiflava
+Pseudomonas sp. R16(2017)
+unclassified Luteibacter
+Proteus genomosp. 6
+Pseudomonas syringae pv. tomato
+Bacteroidetes bacterium
+Morganella psychrotolerans
+Yersinia wautersii
+Salmonella enterica subsp. arizonae serovar 62:z36:- str. RKS2983
+Nitrosomonas nitrosa
+Pseudomonas syringae pv. actinidiae ICMP 19098
+Pseudomonas syringae pv. actinidiae ICMP 19096
+Pseudomonas sp. OV577
+Pseudomonas sp. R2-37-08W
+Psychromonas sp. MB-3u-54
+Pseudomonas sp. NBRC 111142
+Pseudomonas sp. A214
+Deltaproteobacteria bacterium
+Pseudomonas parafulva
+Pseudomonas sp. NFACC24-1
+Luteibacter sp. 329MFSha
+Pseudomonas sp. 443
+Pseudomonas sp. TH26
+Proteobacteria bacterium
+Pseudomonas sp. GM33
+Pseudomonas sp. NFACC09-4
+Pseudomonas amygdali pv. tabaci str. 6605
+Proteus columbae
+Pseudomonas fluorescens group
+Vallitalea guaymasensis
+Salmonella enterica subsp. enterica serovar Bredeney
+Pseudomonas syringae pv. solidagae
+Pseudomonas sp. NFACC49-2
+Pseudomonas sp. DTU12.3
+Pseudomonas sp. LAIL14HWK12:I2
+Nonomuraea sp. ATCC 55076
+Xenorhabdus miraniensis
+Enterobacter bugandensis
+Pseudomonas sp. LAIL14HWK12:I7
+Pseudomonas mandelii
+Proteus
+Pseudomonas sp. 22 E 5
+Pseudomonas sp. CFBP13528
+Martelella sp. BGMRC2036
+Pseudomonas cedrina
+Kosakonia sacchari
+Pseudomonas fluorescens
+Pseudomonas syringae pv. persicae
+Moritella viscosa
+Pseudomonas guariconensis
+Pseudomonas sp. TMW 2.1634
+Xenorhabdus cabanillasii
+Paenibacillus thiaminolyticus
+Salmonella enterica subsp. arizonae
+Proteus vulgaris
+Pseudomonas syringae pv. avellanae str. ISPaVe013
+Ancylobacter aquaticus
+Rhodobacterales bacterium Y4I
+Pantoea agglomerans
+Pseudomonas sp. HMWF006
+Escherichia sp.
+Pseudomonas syringae pv. coryli
+Pseudomonas sp. 2822-17
+Pseudomonas sp. R45(2017)
+Erwinia sp. Ejp617
+Pseudomonas sp. R5-89-07
+Serratia sp. FS14
+Candidatus Regiella insecticola LSR1
+Actinomadura echinospora
+Xenorhabdus bovienii str. puntauvense
+Pseudomonas sp. Q12-87
+Pseudomonas sp. ok266
+Pseudomonas corrugata
+Salmonella enterica subsp. enterica serovar Ajiobo
+Thiorhodococcus drewsii
+Chitinophaga arvensicola
+Pseudomonas endophytica
+Pseudomonas stutzeri
+Photorhabdus temperata subsp. temperata Meg1
+Pseudomonas sp. R3-18-08
+Pseudomonas syringae pv. aptata
+Terasakiella sp. SH-1
+Pseudomonas syringae pv. berberidis
+Pseudomonas brassicacearum
+Enterobacter sp. R4-368
+Pseudomonas amygdali pv. hibisci
+Paenibacillus sophorae
+Rhodobacteraceae bacterium
+Pseudomonas sp. 11K1
+Yersinia enterocolitica
+Pseudomonas sp. RIT-PI-o
+Agarilytica rhodophyticola
+Bradyrhizobium oligotrophicum
+Pseudomonas sp. GW460-4
+Photorhabdus asymbiotica subsp. asymbiotica ATCC 43949
+Pseudomonas syringae pv. syringae FF5
+Pseudomonas sp. RIT-PI-a
+Xenorhabdus nematophila
+Pseudomonas sp. RIT-PI-r
+Pseudomonas sp. PICF141
+Actinoplanes globisporus
+Pseudomonas syringae pv. ribicola
+Methylobacter sp.
+Cedecea sp. NFIX57
+Pseudomonas weihenstephanensis
+Pseudomonas sp. S5D5
+Pseudomonas sp. TAA207
+Pseudomonas migulae
+Pseudomonas lundensis
+Pseudomonas koreensis
+Photorhabdus khanii NC19
+Pseudomonas amygdali pv. mori
+Pseudomonas sp. Irchel s3f10
+Acidobacteria bacterium 13_1_20CM_3_53_8
+Pseudomonas sp. 43NM1
+Pseudomonas sp. ANT_H12B
+Pseudomonas sp. 28 E 9
+Pseudomonas psychrophila
+Chryseobacterium bernardetii
+Yersinia entomophaga
+Burkholderia stabilis
+Pseudomonas sp. Sample_14
+Pedobacter caeni
+Pseudomonas sp. Sample_10
+Pseudomonas sp. Sample_11
+Pseudomonas caspiana
+Pseudomonas sp. Irchel 3E19
+Xenorhabdus japonica
+Yersinia frederiksenii
+Burkholderia sp. LS-044
+Pseudomonas sp. Irchel 3E13
+Pseudomonas sp. R4-39-08
+Pseudomonas sp. v388
+Enterobacter sp.
+Erwinia mallotivora
+Morganella morganii
+Pseudomonas sp. B26(2017)
+Granulibacter bethesdensis
+Chromobacterium violaceum
+Desulfofarcimen acetoxidans
+Clostridioides difficile
+Salmonella enterica
+Candidatus Fukatsuia symbiotica
+Actinocorallia herbida
+Tistrella sp.
+Pseudomonas sp. GM67
+Xenorhabdus khoisanae
+Moorea bouillonii
+Pseudomonas sp. NDM
+Salmonella enterica subsp. enterica serovar Oranienburg
+Pseudomonas sp. RIT288
+Paenibacillus curdlanolyticus
+Pseudomonas sp. R4-35-07
+Pseudomonas sp. H3(2019)
+Pseudomonas amygdali pv. tabaci
+Rahnella aquatilis HX2
+Pseudomonas cichorii
+Photorhabdus sp. MEX20-17
+Salmonella enterica subsp. salamae
+Pseudomonas rhodesiae
+Pseudomonas sp. WCHPs060044
+Pseudomonas sp. RIT 409
+Pseudomonas sp. Leaf129
+Pseudomonas sp. P1.8
+Yersinia pestis KIM10+
+Pseudomonas
+Pseudomonas sp. NFACC05-1
+Burkholderia sp. b13
+Crocosphaera watsonii WH 0401
+Bacteroidetes bacterium GWE2_42_24
+Burkholderia sp. b14
+Pseudomonas syringae pv. apii
+Pseudomonas sp. Irchel s3h14
+Rahnella sp. DSM 105170
+Gemmatimonadetes bacterium
+Pseudomonas syringae pv. pisi str. 1704B
+Ewingella americana
+Pseudomonas syringae pv. antirrhini
+Leptolyngbya ohadii
+Cylindrospermum sp. NIES-4074
+Yersinia ruckeri
+Pseudomonas caricapapayae
+Salmonella enterica subsp. diarizonae serovar 59:z10:-
+Pseudomonas sp. FW305-47B
+Providencia alcalifaciens
+Shewanella psychrophila
+Luteibacter yeojuensis
+Serratia sp. S40
+Pseudomonas syringae pv. spinaceae
+Streptomyces sp. CNZ288
+Pseudomonas sp. GW456-A1B
+Mycobacterium tuberculosis
+Pseudomonas laurylsulfatiphila
+Pseudescherichia vulneris NBRC 102420
+Pseudomonas sp. CHM02
+Pseudomonas sp. 31-12
+Morganella morganii subsp. morganii KT
+Photorhabdus australis
+Pseudomonas syringae pv. coriandricola
+Micromonospora humi
+Pseudomonas sp. NFR16
+Pseudomonas sp. ef1
+Pseudomonas sp. Sample_9
+Pseudomonas amygdali pv. lachrymans
+Pseudomonas plecoglossicida
+Pseudomonas sp. OV184
+Pedobacter sp. eg
+Pedobacter steynii
+Pseudomonas sp. TAD18
+Chitinophaga sancti
+Pseudomonas sp. 06C 126
+Erwinia toletana
+Yersinia mollaretii
+Pseudomonas sp. NFACC45
+Minicystis rosea
+Pandoraea oxalativorans
+Pseudomonas sp. NZIPFR-PS2
+Pseudomonas sp. 25 E 4
+Pseudomonas syringae pv. tagetis
+Sorangium cellulosum
+Bacteroidetes bacterium HGW-Bacteroidetes-22
+Pseudomonas amygdali pv. sesami
+Pseudomonas sp. R2-7-07
+Salmonella enterica subsp. enterica serovar Montevideo
+Streptomyces exfoliatus
+Marinobacter sp. ZYF650
+Mesorhizobium alhagi
+Pseudomonas poae
+Pseudomonas sp. 655
+Wolbachia
+Pseudomonas sp. 44 R 15
+Photorhabdus luminescens BA1
+Pseudomonas syringae pv. aceris
+Nonomuraea sp. PA1-10
+Pseudomonas sp. GM21
+unclassified Shigella
+Pseudomonas sp. BGI-2
+Escherichia sp. E1130
+Yersinia intermedia
+Pseudomonas sp. NFACC04-2
+Saccharothrix texasensis
+Pseudomonas marginalis
+Escherichia sp. ESNIH1
+Vibrio hyugaensis
+Lewinella nigricans
+Pseudomonas sp. MS586
+Pseudomonas savastanoi pv. phaseolicola
+Pseudomonas sp. NBRC 111124
+Paenibacillus alvei
+Pseudomonas sp. P97.38
+Pseudomonas mosselii
+Pseudomonas sp. 34 E 7
+Pseudomonas fragi
+Pseudomonas sp. R2-60-08W
+Erwinia persicina
+Marinomonas posidonica
+Paenibacillus nanensis
+Candidatus Brocadia fulgida
+Citrobacter amalonaticus
+Burkholderia pseudomallei 1710b
+Salmonella enterica subsp. enterica serovar Newport
+Burkholderia pseudomallei 1710a
+Pseudomonas prosekii
+Achromobacter aloeverae
+Pseudomonas sp. 382
+Photobacterium iliopiscarium
+Microbacterium sp.
+Micromonospora sp. S2509
+Acidovorax cattleyae
+Photorhabdus laumondii subsp. laumondii
+Pseudomonas sp. ANT_J28
+Pantoea rodasii
+Pseudomonas sp. SpeckC
+Photorhabdus
+Yersinia bercovieri
+Aquimarina sp. RZ0
+Pseudomonas jessenii
+Pseudomonas sp. B10
+Photorhabdus sp. CRCIA-P01
+Pseudomonas sp.
+Salmonella enterica subsp. houtenae serovar 43:z4,z23:-
+unclassified Enterobacter
+Pseudomonas sp. GM50
+Salmonella enterica subsp. enterica serovar Reading
+Pseudomonas savastanoi pv. glycinea str. race 4
+Bacteroidetes bacterium 47-18
+Thauera sp. UPWRP
+Pseudomonas syringae BRIP34876
+Pseudomonas sp. CFII68
+Pseudomonas sp. NFACC02
+endosymbiont of Bathymodiolus sp.
+Photorhabdus khanii
+Yersinia pestis biovar Microtus str. 91001
+Pseudomonas granadensis
+Pseudomonas syringae pv. syringae
+Paraburkholderia rhizoxinica
+Pseudomonas sp. Root329
+Pseudomonas asplenii
+Mesorhizobium sp. M00.F.Ca.ET.186.01.1.1
+Pseudomonas sp. OV144
+Kosakonia pseudosacchari
+Brevibacillus sp.
+Shewanella baltica
+Nonomuraea gerenzanensis
+Yersinia pekkanenii
+Pseudomonas sp. Leaf434
+Photobacterium sp. JCM 19050
+Paramesorhizobium deserti
+Candidatus Endobugula sertula
+Pseudomonas sp. 7SR1
+Dyella sp. 333MFSha
+Pseudomonas entomophila L48
+Pseudomonas sp. AP42
+Candidatus Nitrospira inopinata
+Pseudomonas sp. MF6394
+Yersinia mollaretii ATCC 43969
+Tateyamaria omphalii
+Pseudomonas sp. NFIX28
+Crocosphaera watsonii WH 0003
+Pseudomonas savastanoi pv. glycinea
+Crocosphaera watsonii
+Enterobacter genomosp. O
+Actinomadura parvosata subsp. kistnae
+Desulfosporosinus sp. BRH_c37
+Desulfotomaculum reducens
+Plesiocystis pacifica
+Chitinophaga sp. Mgbs1
+Pseudomonas sp. Sample_23
+Pseudomonas sp. Sample_21
+Pseudomonas sp. LLC-1
+Yersinia enterocolitica subsp. palearctica YE-P4
+Photorhabdus temperata
+Pseudomonas sp. BRG-100
+Pseudomonas sp. ACM7
+Moritella sp. PE36
+Pandoraea sp. ISTKB
+Aquimarina sp. AD10
+Photorhabdus heterorhabditis
+Aeromonas sp. HMWF014
+Pseudomonas synxantha
+Serratia entomophila
+Chitinophaga rupis
+Morganella sp. HMSC11D09
+Plantactinospora sp. BC1
+Okeania hirsuta
+Moorea producens PAL-8-15-08-1
+Pseudomonas sp. GM17
+Pseudomonas sp. GM18
+Desulfovibrio sp. S3730MH75
+Pseudomonas lactis
+Pseudomonas sp. GZJR-8
+Candidatus Kentron sp. LPFa
+Pseudomonas sp. LP_7_YM
+Reichenbachiella versicolor
+Luteibacter rhizovicinus
+Enterobacter sp. BIDMC 26
+Pandoraea sp.
+Pseudomonas sp. P1.31
+Pseudomonas sp. GM41(2012)
+Pseudomonas sp. CFBP13508
+Salmonella enterica subsp. enterica serovar Bareilly
+Brevibacillus parabrevis
+Chryseobacterium sp. 7_F195
+Pseudomonas sp. CFBP13506
+Xenorhabdus sp. KK7.4
+Bacillus sp. JAS24-2
+Xenorhabdus stockiae
+Pseudomonas bohemica
+Cytophagaceae bacterium
+Pseudomonas antarctica
+Pseudomonas sp. NFPP24
+Salmonella enterica subsp. houtenae serovar Houten
+Pseudomonas coleopterorum
+Photorhabdus bodei
+Pseudomonas sp. NFPP28
+Pseudomonas fuscovaginae
+Pseudomonas sp. ICMP 564
+Pseudomonas sp. ICMP 561
+Aquimarina aggregata
+Proteus sp.
+Pandoraea sputorum
+Bacillus cereus
+Pelotomaculum sp.
+unclassified Pseudomonas
+Streptomyces sp. WAC01280
+Xenorhabdus vietnamensis
+Pseudomonas sp. AD21
+Sphingomonas sp. Cra20
+Paenibacillus cellulosilyticus
+Pseudomonas helleri
+Burkholderia sp. MSMB2040
+Pseudomonas entomophila
+Pseudomonas sp. NFR09
+Pseudomonas sp. NFR02
+Pseudomonas sp. R11-23-07
+Pseudomonas deceptionensis
+Enterobacter sp. DE0047
+Mariniradius saccharolyticus
+Pseudomonas sp. 286
+Yersinia pestis Antiqua
+Luteibacter sp. UNC138MFCol5.1
+Pseudomonas sp. MWU13-2625
+Moorea bouillonii PNG
+Pseudomonas kribbensis
+Pseudomonas sp. NFACC37-1
+Pseudomonas syringae pv. actinidiae ICMP 18807
+Actinomadura sp. WMMB499
+Pseudomonas syringae pv. actinidiae ICMP 18804
+Pseudomonas sp. BTN1
+Pseudomonas sp. Ea RS28
+pseudomallei group
+Pseudomonas sp. RU47
+Pseudomonas sp. GL93
+Pantoea wallisii
+Pseudomonas sp. OV657
+Pseudomonas sp. B15(2017)
+Pseudomonas arsenicoxydans
+Pseudomonas sp. GV085
+Pseudomonas orientalis
+marine bacterium AO1-C
+Pseudomonas sp. Irchel 3H7
+Pseudomonas sp. A25(2017)
+Pseudomonas sp. Irchel 3E20
+Pseudomonas syringae
+Pseudomonas sp. MPR-ANC1
+Pseudomonas sp. NZIPFR-PS5
+Pseudomonas sp. MPBD7-1
+Bordetella genomosp. 10
+Microvirgula aerodenitrificans
+Pseudomonas sp. 424
+Paenibacillus glycanilyticus
+Paenibacillus forsythiae
+Pseudomonas sp. FSL W7-0098
+Photorhabdus laumondii
+Fulvivirga sp. M361
+Herbidospora cretacea
+Salmonella enterica subsp. enterica serovar Chester
+Wolbachia endosymbiont of Cylisticus convexus
+Pseudomonas aeruginosa
+Aliivibrio wodanis
+Moorea producens
+Pseudomonas sp. NBRC 111130
+Nissabacter sp. SGAir0207
+Pseudomonas sp. OV221
+Pseudomonas sp. Bc-h
+Pseudomonas sp. NBRC 111137
+Pseudomonas sp. NBRC 111138
+Tistrella mobilis
+Pseudomonas sp. GW456-12-10-14-LB2
+Chromobacterium amazonense
+Pseudomonas sp. FW305-122
+Pseudomonas sp. DSM 108990
+Pseudomonas amygdali
+Candidatus Methyloumidiphilus alinensis

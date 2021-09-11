@@ -1,0 +1,137 @@
+{% extends 'admin/master.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block head_tail %}
+    {{ super() }}
+
+    <script src="../../static/js/d3/d3.min.js"></script>
+    <script src="../../static/js/d3/d3-tip.js"></script>
+    <script src="../../static/js/select.js"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script src="../../static/js/selectize.min.js"></script>
+    <script src="../../static/js/selectize_custom.js"></script>
+
+    <link href="{{ url_for('static', filename='css/selectize.min.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/select.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/tracks.css') }}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/regions.css') }}" rel="stylesheet">
+    {{ JSGlue.include() }}
+
+
+{% endblock %}
+{% block body %}
+
+    <div class="container">
+
+        <form method="POST" enctype="multipart/form-data">
+            {{ upload_form.hidden_tag() }}
+
+            <div class="smallform">
+
+
+                <br>
+
+                <br>
+
+                {{ upload_form.upload_name.label }}
+
+                {{ upload_form.upload_name() }}
+
+                <br>
+
+                <br>
+
+                {{ upload_form.gene_order.label }}
+
+                {{ upload_form.gene_order() }}
+
+                <br>
+
+                <br>
+
+                {{ upload_form.annotated_tree.label }}
+
+                {{ upload_form.annotated_tree() }}
+
+
+                <br>
+
+                <br>
+
+                <br>
+
+                <br>
+
+                {{ upload_form.upload(class="btn-primary") }}
+            </div>
+            <br>
+
+
+        </form>
+
+    </div>
+
+          <form method="POST" enctype="multipart/form-data">
+            {{ select_form.hidden_tag() }}
+
+            <div class="smallform">
+
+
+                <br>
+
+                <br>
+
+                {{ select_form.select_name.label }}
+
+                {{ select_form.select_name() }}
+
+                <br>
+
+                <br>
+
+
+                {{ select_form.select(class="btn-primary") }}
+            </div>
+            <br>
+
+
+        </form>
+
+
+            <div id="tree_img">
+
+
+            <img id="img_id" src="">
+
+
+        </div>
+
+        <script>
+            var tree_img = "{{ tree_img | safe }}"
+            $("#img_id").attr("src", tree_img)    </script>
+
+
+
+    <script>
+
+
+
+
+    </script>
+
+
+
+
+{% endblock %}
+
+{% block tail_js %}}
+    {{ super() }}
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/selectize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/form.js') }}"></script>
+
+
+{% endblock %}

@@ -1,0 +1,164 @@
+{% extends 'admin/master.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block body %}
+
+<div class = "container">
+
+     <form method="POST"    enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+
+            <div class="smallform">
+
+
+                <br>
+
+                {{ form.region.label  }}
+
+                {{ form.region()  }}
+
+                <br>
+
+                <br>
+
+                {{ form.filename.label }}
+
+                {{ form.filename() }}
+
+                <br>
+
+                <br>
+
+                {{ form.include_genome.label }}
+
+                {{ form.include_genome() }}
+
+                <br>
+
+                <br>
+
+                {{ form.exclude_genome.label }}
+
+                {{ form.exclude_genome() }}
+
+                <br>
+
+                <br>
+
+                {{ form.include_hits.label }}
+
+                {{ form.include_hits() }}
+
+                <br>
+
+                <br>
+
+                {{ form.exclude_hits.label }}
+
+                {{ form.exclude_hits() }}
+
+                <br>
+
+                <br>
+
+
+                {{ form.translate() }}
+
+
+                {{ form.translate.label (class_="genome-search") }}
+
+
+                <br>
+
+                <br>
+
+                {{ form.align() }}
+
+
+                {{ form.align.label (class_="genome-search") }}
+
+
+                <br>
+
+
+            {{ form.submit(class="btn-primary") }}
+            </div>
+         <br>
+
+
+
+ </form>
+
+</div>
+
+  <form method="POST"    enctype="multipart/form-data">
+            {{ associated_regions.hidden_tag() }}
+
+            <div class="smallform">
+
+                <br>
+
+            {{ associated_regions.associated_regions(class="btn-primary") }}
+            </div>
+         <br>
+
+
+
+ </form>
+
+  <form method="POST"    enctype="multipart/form-data">
+            {{ tags.hidden_tag() }}
+
+            <div class="smallform">
+
+                <br>
+
+            {{ tags.tags(class="btn-primary") }}
+            </div>
+         <br>
+
+
+
+ </form>
+
+<script>
+//        $('#associated_regions').on('click', function (e) {
+////        e.preventDefault();
+////        console.log('clicked delete hit')
+//
+//        var genome = "{{ genome |safe }}"
+//
+//
+//        $.ajax({
+//            url: Flask.url_for("delete_hit"),
+//            data: JSON.stringify({
+//                'genome': genome, 'hits': selected
+//            }),
+//            contentType: 'application/json;charset=UTF-8',
+//            type: 'POST',
+//            error: function (error) {
+//                console.log(error);
+//            },
+//            success: function (response) {
+//
+//                console.log('bamboozled')
+//
+//                window.location.reload();
+//
+//
+//            }
+//        });
+//
+//    });
+</script>
+
+
+{% endblock %}
+
+{% block tail_js %}}
+    {{ super() }}
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/selectize.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/form.js') }}"></script>
+
+
+{% endblock %}
