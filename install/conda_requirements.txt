@@ -14,7 +14,7 @@ libffi=3.2.1=h475c297_4
 markupsafe=1.1.0=py36h1de35cc_0
 ncurses=6.1=h0a44026_1
 openssl=1.1.1a=h1de35cc_0
-pip=18.1=py36_0
+pip>=19.2
 python=3.6.8=haf84260_0
 readline=7.0=h1de35cc_5
 setuptools=40.6.3=py36_0
