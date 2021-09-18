@@ -1,6 +1,4 @@
-import phyloisland
 import models
-import checkForFeature
 import os
 from flask import flash
 import random
