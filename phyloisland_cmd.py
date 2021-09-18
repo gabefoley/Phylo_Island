@@ -29,15 +29,40 @@ parser.add_argument("-g", "--add_genomes", help="path to list of species")
 # parser.add_argument("-i", "--input_file", help="path to list of species")
 parser.add_argument("-p", "--add_profiles", help="path to profile folder")
 
-parser.add_argument("-u", "--update_genomes", help="update genomes", action="store_true")
-parser.add_argument("-f", "--fasta", help="save all regions to fasta files", action="store_true")
-parser.add_argument("-r", "--region_order", help="write out order of regions in all genomes ", action="store_true")
+parser.add_argument(
+    "-u", "--update_genomes", help="update genomes", action="store_true"
+)
+parser.add_argument(
+    "-f", "--fasta", help="save all regions to fasta files", action="store_true"
+)
+parser.add_argument(
+    "-r",
+    "--region_order",
+    help="write out order of regions in all genomes ",
+    action="store_true",
+)
 
-parser.add_argument("-o", "--overview", help="get overview of database", action="store_true")
-parser.add_argument("-dg", "--delete_genomes", help="delete genomes", action="store_true")
-parser.add_argument("-dt", "--delete_genome_tags", help="delete current genome classifications", action="store_true")
-parser.add_argument("-c", "--classify", help="classify genomes based on their regions ", action="store_true")
-parser.add_argument("-m", "--mlgo", help="write out regions to mlgo format", action="store_true")
+parser.add_argument(
+    "-o", "--overview", help="get overview of database", action="store_true"
+)
+parser.add_argument(
+    "-dg", "--delete_genomes", help="delete genomes", action="store_true"
+)
+parser.add_argument(
+    "-dt",
+    "--delete_genome_tags",
+    help="delete current genome classifications",
+    action="store_true",
+)
+parser.add_argument(
+    "-c",
+    "--classify",
+    help="classify genomes based on their regions ",
+    action="store_true",
+)
+parser.add_argument(
+    "-m", "--mlgo", help="write out regions to mlgo format", action="store_true"
+)
 parser.add_argument("--refseq", help="run full refseq check", action="store_true")
 parser.add_argument("--query_db", help="query db", action="store_true")
 parser.add_argument("--load_genomes", help="load genomes")
@@ -50,7 +75,7 @@ args = parser.parse_args()
 
 if args.add_genomes:
     # Retrieve the genomes
-    print ("Adding genomes")
+    print("Adding genomes")
     cmd_code.get_genomes(args)
 
 if args.add_profiles:
@@ -64,11 +89,11 @@ if args.add_profiles:
 
 if args.update_genomes:
 
-    print ("Updating genomes")
+    print("Updating genomes")
     cmd_code.update_genomes()
 
 if args.overview:
-    print ('Overview of database')
+    print("Overview of database")
     cmd_code.get_overview()
 
 if args.delete_genomes:
@@ -77,12 +102,12 @@ if args.delete_genomes:
 
 if args.delete_genome_tags:
     queries = models.GenomeRecords.objects.all().timeout(False)
-    print ("Deleting all existing genome classification tags")
+    print("Deleting all existing genome classification tags")
     genome_overview.delete_genome_tags(queries)
 
 if args.classify:
     queries = models.GenomeRecords.objects.all().timeout(False)
-    print ("Classifying the genomes")
+    print("Classifying the genomes")
     genome_overview.classify_genomes(queries)
 
 
@@ -90,27 +115,30 @@ if args.fasta:
     profile_names = models.Profile.objects().all()
 
     for profile in profile_names:
-        getGenomes.download_fasta_regions(profile.name + "_expanded", filename='cmd', split_strands=False,
-                                          align=False)
+        getGenomes.download_fasta_regions(
+            profile.name + "_expanded", filename="cmd", split_strands=False, align=False
+        )
 
 if args.region_order:
     genomes = models.GenomeRecords.objects.all().timeout(False)
-    getGenomes.write_genome_order(genomes, split_strands=False, path ='./fasta_folder/genome_order_from_cmd.txt')
+    getGenomes.write_genome_order(
+        genomes, split_strands=False, path="./fasta_folder/genome_order_from_cmd.txt"
+    )
 
 if args.mlgo:
     genomes = models.GenomeRecords.objects.all().timeout(False)
-    getGenomes.write_mlgo_order(genomes, path ='./fasta_folder/mlgo.txt')
+    getGenomes.write_mlgo_order(genomes, path="./fasta_folder/mlgo.txt")
 
 
 if args.query_db:
-    genomes = models.GenomeRecords.objects(species='Halomicronema hongdechloris')
+    genomes = models.GenomeRecords.objects(species="Halomicronema hongdechloris")
 
     # genomes = models.GenomeRecords.objects(species='Photorhabdus heterorhabditis')
 
     for genome in genomes:
-        print (genome)
+        print(genome)
         for hit in genome.hits:
-            print (hit)
+            print(hit)
 
 
 if args.load_genomes:
@@ -119,9 +147,6 @@ if args.load_genomes:
         filepath = args.load_genomes + "/"
     else:
         filepath = args.load_genomes
-
-
-
 
     # filepath = "./files/test_genomes/"
     # filepath = "/Users/gabefoley/Dropbox/PhD/Projects/Phylo_Island/2020/20200817_Checking_full_9000_genomes/genbank" \
@@ -142,40 +167,30 @@ if args.load_genomes:
     # filepath = '/Users/gabefoley/Dropbox/PhD/Projects/Phylo_Island/2020/20201215_Checking_all_types_reading_features' \
     #            '/genbank/bacteria/'
 
-
-
-
-    genome_name = [x for x in os.listdir(filepath) if x != '.DS_Store']
-
+    genome_name = [x for x in os.listdir(filepath) if x != ".DS_Store"]
 
     chunk = numpy.array_split(numpy.array(genome_name), 5)
 
-    print (chunk)
-
+    print(chunk)
 
     for genomes in chunk:
 
-        print (genomes)
-
-
+        print(genomes)
 
         for genome in genomes:
 
-            print ("NEW GENOME")
+            print("NEW GENOME")
 
-            print (filepath)
-            print (genome)
-
-
+            print(filepath)
+            print(genome)
 
             genome_path = glob.glob(filepath + genome + "/*_genomic.fna.gz")[0]
 
             report_path = glob.glob(filepath + genome + "/*_assembly_report.txt")[0]
 
-            print (genome_path)
+            print(genome_path)
 
-            print (report_path)
-
+            print(report_path)
 
             # genome_path = filepath + genome + "/" + genome + '_genomic.fna.gz'
 
@@ -183,34 +198,31 @@ if args.load_genomes:
 
             outpath = ".".join(genome_path.split(".")[0:-1]) + ".fasta"
 
-            with open(outpath, 'w') as query_file:
+            with open(outpath, "w") as query_file:
                 for line in file_from_zip:
-                    query_file.write(line.decode('utf-8'))
+                    query_file.write(line.decode("utf-8"))
 
             file_from_zip.close()
-
 
             genome_list = []
 
             genome_dict = refseq_code.get_genome_dict(outpath, report_path)
 
-
             # genome_dict = refseq_code.read_genome(outpath, genome)
 
-            if len (genome_dict) > 0:
-                print ('Found something!')
+            if len(genome_dict) > 0:
+                print("Found something!")
 
-            print (genome_dict)
+            print(genome_dict)
 
-
-        #     for k, v in genome_dict.items():
-        #         print (k)
-        #         print (v)
-        #
-        #     print ("Adding genome\n")
-        #
-        #     print (genome_dict)
-        #
+            #     for k, v in genome_dict.items():
+            #         print (k)
+            #         print (v)
+            #
+            #     print ("Adding genome\n")
+            #
+            #     print (genome_dict)
+            #
             utilities.add_genome(genome_dict)
 
             # print ("Remove unzipped FASTA file from disk\n")
@@ -252,5 +264,3 @@ if args.delete_all_profiles:
     # Delete the profiles from the database (so we can easily update them with new ones if need be)
     profiles_to_delete = models.Profile.objects()
     profiles_to_delete.delete()
-
-

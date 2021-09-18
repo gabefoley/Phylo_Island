@@ -13,17 +13,18 @@ class User(db.DynamicDocument, UserMixin):
     """
     User model
     """
+
     active = db.BooleanField(default=True)
 
     # User authentication information
-    username = db.StringField(default='', unique=True)
+    username = db.StringField(default="", unique=True)
     email = db.StringField(max_length=30)
     password = db.StringField()
     email_confirmed_at = db.DateTimeField()
 
     # User information
-    first_name = db.StringField(default='')
-    last_name = db.StringField(default='')
+    first_name = db.StringField(default="")
+    last_name = db.StringField(default="")
 
     # Customisable information
     page_size = db.IntField()
@@ -42,6 +43,7 @@ class SequenceRecords(db.DynamicDocument):
     """
     Class for storing Sequence records
     """
+
     name = db.StringField()
     species = db.StringField()
     description = db.StringField()
@@ -54,6 +56,7 @@ class Hits(db.EmbeddedDocument):
     """
     Class for storing a set of HMMER hits for a given region for a Genome Record or Region Record
     """
+
     id = db.ObjectIdField()
     name = db.StringField()
     region = db.StringField()
@@ -161,8 +164,15 @@ class Profile(db.DynamicDocument):
 class BlobUploadField(fields.StringField):
     widget = FileInput()
 
-    def __init__(self, label=None, allowed_extensions=None, size_field=None, filename_field=None, mimetype_field=None,
-                 **kwargs):
+    def __init__(
+        self,
+        label=None,
+        allowed_extensions=None,
+        size_field=None,
+        filename_field=None,
+        mimetype_field=None,
+        **kwargs
+    ):
 
         self.allowed_extensions = allowed_extensions
         self.size_field = size_field
@@ -182,17 +192,19 @@ class BlobUploadField(fields.StringField):
         if not self.allowed_extensions:
             return True
 
-        return ('.' in filename and
-                filename.rsplit('.', 1)[1].lower() in
-                map(lambda x: x.lower(), self.allowed_extensions))
+        return "." in filename and filename.rsplit(".", 1)[1].lower() in map(
+            lambda x: x.lower(), self.allowed_extensions
+        )
 
     def _is_uploaded_file(self, data):
-        return (data and isinstance(data, FileStorage) and data.filename)
+        return data and isinstance(data, FileStorage) and data.filename
 
     def pre_validate(self, form):
         super(BlobUploadField, self).pre_validate(form)
-        if self._is_uploaded_file(self.data) and not self.is_file_allowed(self.data.filename):
-            raise ValidationError(gettext('Invalid file extension'))
+        if self._is_uploaded_file(self.data) and not self.is_file_allowed(
+            self.data.filename
+        ):
+            raise ValidationError(gettext("Invalid file extension"))
 
     def process_formdata(self, valuelist):
         if valuelist:

@@ -16,6 +16,7 @@ def seqdescription_formatter(view, context, model, name):
     else:
         return model.sequence
 
+
 def hitdescription_formatter(view, context, model, name):
 
     hit_count = {}
@@ -33,6 +34,7 @@ def hitdescription_formatter(view, context, model, name):
 
     return output_string
 
+
 def references_formatter(view, context, model, name):
 
     output_string = ""
@@ -45,9 +47,6 @@ def references_formatter(view, context, model, name):
     return output_string
 
 
-
-
-
 class GetUniqueSpecies(BaseSQLAFilter):
     def apply(self, query, value, alias="None"):
 
@@ -55,7 +54,7 @@ class GetUniqueSpecies(BaseSQLAFilter):
         id_list = []
 
         for record in phyloisland.bio_db.values():
-            species = (" ".join(record.annotations.get('organism').split()[0:2]))
+            species = " ".join(record.annotations.get("organism").split()[0:2])
             if species in species_list:
                 continue
             else:
@@ -65,7 +64,7 @@ class GetUniqueSpecies(BaseSQLAFilter):
         return query.filter(self.get_column(alias).in_(id_list))
 
     def operation(self):
-        return 'Yes'
+        return "Yes"
 
 
 class GetUniqueSpeciesSequenceRecord(BaseSQLAFilter):
@@ -75,7 +74,7 @@ class GetUniqueSpeciesSequenceRecord(BaseSQLAFilter):
         id_list = []
 
         for record in phyloisland.bio_db.values():
-            species = (" ".join(record.annotations.get('organism').split()[0:2]))
+            species = " ".join(record.annotations.get("organism").split()[0:2])
             if species in species_list:
                 continue
             else:
@@ -85,4 +84,4 @@ class GetUniqueSpeciesSequenceRecord(BaseSQLAFilter):
         return query.filter(self.get_column(alias).in_(id_list))
 
     def operation(self):
-        return 'Yes'
+        return "Yes"

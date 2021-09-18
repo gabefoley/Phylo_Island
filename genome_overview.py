@@ -8,7 +8,9 @@ import random
 import models
 
 
-def writeHMMToImage(hmm_dict, reference, seq_record, name, query_id, species, expand=False):
+def writeHMMToImage(
+    hmm_dict, reference, seq_record, name, query_id, species, expand=False
+):
     # Currently taking region to be run simultaneously with hmmer, will need to manipulate some stuff for later
     # Initiation of GenomeDiagram assets"
 
@@ -29,20 +31,34 @@ def writeHMMToImage(hmm_dict, reference, seq_record, name, query_id, species, ex
 
     gd_diagram = GenomeDiagram.Diagram(name)
     max_len = 0
-    output_path = "static/user_images/%s_%s%s.png" % (query_id, species, "_expanded" if expand else "")
+    output_path = "static/user_images/%s_%s%s.png" % (
+        query_id,
+        species,
+        "_expanded" if expand else "",
+    )
 
     output_path = output_path.replace(" ", "_")
 
     print(output_path)
 
-    print ('makea da image')
+    print("makea da image")
 
     start = 0
     # For my work I was considering changing 'region1, 2, and 3' to a3, TcB, and TcC for convenience
     # Up to others though if I fully change that (is just a UI thing tbh)
-    region_colours = {"A1": "orange", "A2": "red", "Chitinase": "green", "TcdA1": "yellow",
-                      "TcB": "blue", "TcC": "magenta", "pore": "grey", "region1": "lightblue", "region2": "pink",
-                      "region3": "purple", "region4": "black"}
+    region_colours = {
+        "A1": "orange",
+        "A2": "red",
+        "Chitinase": "green",
+        "TcdA1": "yellow",
+        "TcB": "blue",
+        "TcC": "magenta",
+        "pore": "grey",
+        "region1": "lightblue",
+        "region2": "pink",
+        "region3": "purple",
+        "region4": "black",
+    }
     locs = {}
     strand_dict = {}
     strandd = 1
@@ -58,8 +74,8 @@ def writeHMMToImage(hmm_dict, reference, seq_record, name, query_id, species, ex
 
             elif "backward" in reg:
                 strandd = -1
-                print ('bananas')
-                print (reg)
+                print("bananas")
+                print(reg)
                 location = reg.split("/")[3] + utilities.randstring(5)
                 locs[location] = result[reg].split(":")
                 strand_dict[location] = strandd
@@ -78,20 +94,26 @@ def writeHMMToImage(hmm_dict, reference, seq_record, name, query_id, species, ex
     i = 0
     for location in locs:
 
-        print ('whoopsy')
-        print (location)
+        print("whoopsy")
+        print(location)
         """ Extract start and end values from each location, and add to independent lists """
         """ create and add features based on locations """
         feature = SeqFeature(
-            location=FeatureLocation(int(locs[location][0]), int(locs[location][1]), strand=strand_dict[location]),
-            type=location[0:-5])
+            location=FeatureLocation(
+                int(locs[location][0]),
+                int(locs[location][1]),
+                strand=strand_dict[location],
+            ),
+            type=location[0:-5],
+        )
         seq_record.features.append(feature)
 
     """ Set up the Genome Diagram """
     max_len = max(max_len, len(seq_record))
 
-    gd_track1 = gd_diagram.new_track(0, name=name + " Track 1", greytrack=True, start=0,
-                                     end=len(seq_record))
+    gd_track1 = gd_diagram.new_track(
+        0, name=name + " Track 1", greytrack=True, start=0, end=len(seq_record)
+    )
     gd_feature_set1 = gd_track1.new_set()
 
     for feature in seq_record.features:
@@ -119,7 +141,10 @@ def writeHMMToImage(hmm_dict, reference, seq_record, name, query_id, species, ex
 
             for loc in dict_track[current_track]:
 
-                if feature.location.start + overlap_amount in loc or feature.location.end - overlap_amount in loc:
+                if (
+                    feature.location.start + overlap_amount in loc
+                    or feature.location.end - overlap_amount in loc
+                ):
                     overlap = True
 
             if overlap:
@@ -129,8 +154,13 @@ def writeHMMToImage(hmm_dict, reference, seq_record, name, query_id, species, ex
                     if max_tracks is not None and current_track == max_tracks:
 
                         # We've reached the highest track we want to try and add, so just add it to the bottom track (there will be overlap)
-                        gd_feature_set1.add_feature(feature, label=True, name=feature.type,
-                                                    color=region_colours[feature.type], label_position='middle')
+                        gd_feature_set1.add_feature(
+                            feature,
+                            label=True,
+                            name=feature.type,
+                            color=region_colours[feature.type],
+                            label_position="middle",
+                        )
                         dict_track[1].append(feature.location)
                         feature_added = True
                     else:
@@ -143,10 +173,20 @@ def writeHMMToImage(hmm_dict, reference, seq_record, name, query_id, species, ex
                             forward_tracks[current_track] = []
                         if current_track not in backward_tracks.keys():
                             backward_tracks[current_track] = []
-                        exec("gd_track" + str(
-                            current_track) + "= gd_diagram.new_track(0, name=name + ' Track " + str(
-                            current_track) + "', greytrack=True, start=0, end=len(seq_record))")
-                        exec("gd_feature_set" + str(current_track) + " = gd_track" + str(current_track) + ".new_set()")
+                        exec(
+                            "gd_track"
+                            + str(current_track)
+                            + "= gd_diagram.new_track(0, name=name + ' Track "
+                            + str(current_track)
+                            + "', greytrack=True, start=0, end=len(seq_record))"
+                        )
+                        exec(
+                            "gd_feature_set"
+                            + str(current_track)
+                            + " = gd_track"
+                            + str(current_track)
+                            + ".new_set()"
+                        )
 
                 else:
                     # Check on higher track
@@ -154,12 +194,15 @@ def writeHMMToImage(hmm_dict, reference, seq_record, name, query_id, species, ex
 
             else:
 
-                print ('howie')
-                print (feature)
-                print (feature.type)
+                print("howie")
+                print(feature)
+                print(feature.type)
                 # Add to this track
-                exec("gd_feature_set" + str(
-                    current_track) + ".add_feature(feature, label=True, name=feature.type, color=region_colours[feature.type], label_position='middle')")
+                exec(
+                    "gd_feature_set"
+                    + str(current_track)
+                    + ".add_feature(feature, label=True, name=feature.type, color=region_colours[feature.type], label_position='middle')"
+                )
                 if current_track in dict_track:
                     dict_track[current_track].append(feature.location)
                 else:
@@ -168,10 +211,12 @@ def writeHMMToImage(hmm_dict, reference, seq_record, name, query_id, species, ex
 
     for track in range(1, total_tracks):
         exec("gd_track" + str(track) + ".add_set(gd_feature_set" + str(track) + ")")
-    gd_diagram.draw(format="linear", pagesize="A2", fragments=10, start=start, end=len(seq_record))
+    gd_diagram.draw(
+        format="linear", pagesize="A2", fragments=10, start=start, end=len(seq_record)
+    )
     gd_diagram.write(output_path, "PNG")
     print("Genome Diagram has been added to file " + output_path)
-    fh = open(output_path, 'rb')
+    fh = open(output_path, "rb")
     return fh
 
 
@@ -192,11 +237,12 @@ def writeHMMToImage(hmm_dict, reference, seq_record, name, query_id, species, ex
 #         print ('it was already there')
 #
 
+
 def write_hits_to_gb(hmm_dict, reference, seqrecord, query_id, species, expand=False):
 
-    print ('writing to genbank')
-    print ('and reference is ')
-    print (reference)
+    print("writing to genbank")
+    print("and reference is ")
+    print(reference)
     name = species + "_sequence"
     name += "_expanded" if expand else ""
     output_path = reference + "/" + name + ".gb"
@@ -204,7 +250,7 @@ def write_hits_to_gb(hmm_dict, reference, seqrecord, query_id, species, expand=F
     output_path = output_path.replace(" ", "_")
     print(name)
     print(reference)
-    print('and species name is', species)
+    print("and species name is", species)
     seqrecord.name = species[0:9].zfill(9).replace(" ", "_")
 
     print(seqrecord.name)
@@ -214,9 +260,18 @@ def write_hits_to_gb(hmm_dict, reference, seqrecord, query_id, species, expand=F
     """ Create a dictionary for key = feature type -> value = location """
     locs = {}
     strand_dict = {}
-    colour_dict = {"A1": "255 165 0", "A2": "255 0 0", "TcdA1": "255 255 0", "TcB": "0 0 255", "TcC": "255 0 255",
-                   "Chitinase": "0 255 0", "region1": "0 255 255", "region2": "255 153 255", "region3": "204 0 102",
-                   "region4": "0 0 0"}
+    colour_dict = {
+        "A1": "255 165 0",
+        "A2": "255 0 0",
+        "TcdA1": "255 255 0",
+        "TcB": "0 0 255",
+        "TcC": "255 0 255",
+        "Chitinase": "0 255 0",
+        "region1": "0 255 255",
+        "region2": "255 153 255",
+        "region3": "204 0 102",
+        "region4": "0 0 0",
+    }
     for result in hmm_dict:
         print(result)
         i = 0
@@ -243,10 +298,16 @@ def write_hits_to_gb(hmm_dict, reference, seqrecord, query_id, species, expand=F
     seqrecord.features = []
     for location in locs:
         """ create and add features based on locations """
-        color = {'color': colour_dict[location[0:-5]]}
+        color = {"color": colour_dict[location[0:-5]]}
         feature = SeqFeature(
-            location=FeatureLocation(int(locs[location][0]), int(locs[location][1]), strand=strand_dict[location]),
-            type=location[0:-5], qualifiers=color)
+            location=FeatureLocation(
+                int(locs[location][0]),
+                int(locs[location][1]),
+                strand=strand_dict[location],
+            ),
+            type=location[0:-5],
+            qualifiers=color,
+        )
         seqrecord.features.append(feature)
 
         # add_hit_to_database(query_id = query_id, species=species, region=location[0:-5], start=int(locs[location][0]), \
@@ -259,65 +320,83 @@ def write_hits_to_gb(hmm_dict, reference, seqrecord, query_id, species, expand=F
     # seqrecord.seq = Seq(sequence, generic_dna)
     SeqIO.write(seqrecord, output_path, "genbank")
 
+
 def classify_genomes_original(queries):
     for query in queries:
         region_names = set([hit.region for hit in query.hits])
-        print (f"\nClassifying {query.description}")
-        print (f"It has the following regions {region_names}")
+        print(f"\nClassifying {query.description}")
+        print(f"It has the following regions {region_names}")
         if set(["TcB", "TcC"]).issubset(region_names):
             if set(["A1", "A2"]).issubset(region_names):
                 if set(["Chitinase"]).issubset(region_names):
-                    print ("It had A1 / A2 and chitinases, so we're tagging it as Type 2A")
+                    print(
+                        "It had A1 / A2 and chitinases, so we're tagging it as Type 2A"
+                    )
                     update_tag(query, "Auto_Type2A")
                 else:
-                    print ("It had A1 / A2 but no chitinases, so we're tagging it as Type 2B")
+                    print(
+                        "It had A1 / A2 but no chitinases, so we're tagging it as Type 2B"
+                    )
                     update_tag(query, "Auto_Type2B")
 
             elif set(["TcdA1"]).issubset(region_names):
                 if set("Chitinase").issubset(region_names):
-                    print("It had TcdA1 but also chitinase, so we're tagging it for further investigation")
+                    print(
+                        "It had TcdA1 but also chitinase, so we're tagging it for further investigation"
+                    )
                     update_tag(query, "Auto_Unsure")
 
                 else:
-                    print ("It had TcdA1 so we're classifying it as Type 1")
+                    print("It had TcdA1 so we're classifying it as Type 1")
                     update_tag(query, "Auto_Type1")
 
-
             else:
-                print("It had a TcB and TcC, but was missing either A1 or TcdA1, so we're classifying it as incomplete")
+                print(
+                    "It had a TcB and TcC, but was missing either A1 or TcdA1, so we're classifying it as incomplete"
+                )
                 update_tag(query, "Auto_Incomplete")
 
         else:
-            print ("It was lacking a TcB and TcC, so we're classifying it as incomplete")
+            print("It was lacking a TcB and TcC, so we're classifying it as incomplete")
             update_tag(query, "Auto_Incomplete")
+
 
 def classify_genomes(queries):
 
-
     for query in queries:
-        region_names = set([hit.region for hit in query.hits if 'expanded' in hit.region if 'hidden' not in hit.tags])
+        region_names = set(
+            [
+                hit.region
+                for hit in query.hits
+                if "expanded" in hit.region
+                if "hidden" not in hit.tags
+            ]
+        )
 
-
-        print (f"\nClassifying {query.description}")
-        print (f"It has the following regions {region_names}")
+        print(f"\nClassifying {query.description}")
+        print(f"It has the following regions {region_names}")
 
         print("Check if it should be Single or Multiple")
 
-        allow_multi = ['Chitinase_expanded', 'TcB_expanded', 'TcC_expanded']
-        multi_check = [hit.region for hit in query.hits if 'expanded' in hit.region and hit.region not in allow_multi]
+        allow_multi = ["Chitinase_expanded", "TcB_expanded", "TcC_expanded"]
+        multi_check = [
+            hit.region
+            for hit in query.hits
+            if "expanded" in hit.region and hit.region not in allow_multi
+        ]
 
-        print (multi_check)
+        print(multi_check)
 
         if len(multi_check) != len(set(multi_check)):
-            count_check = 'Multiple'
+            count_check = "Multiple"
         else:
-            count_check = 'Single'
+            count_check = "Single"
 
         # Count the number of chitinases
         chitinase_count = 0
         for hit in query.hits:
-            if hit.region == 'Chitinase_expanded':
-                chitinase_count +=1
+            if hit.region == "Chitinase_expanded":
+                chitinase_count += 1
 
         # Check if there is at least one A1 and A2 that don't overlap
 
@@ -328,21 +407,19 @@ def classify_genomes(queries):
 
         if set(["A1_expanded", "A2_expanded"]).issubset(region_names):
             for hit in query.hits:
-                if hit.region == 'A1_expanded':
+                if hit.region == "A1_expanded":
                     a1_starts.append(hit.start)
                     a1_ends.append(hit.end)
 
-                if hit.region == 'A2_expanded':
+                if hit.region == "A2_expanded":
                     a2_starts.append(hit.start)
                     a2_ends.append(hit.end)
 
+            print("Here are the A1 start positions ")
+            print(a1_starts)
 
-
-            print ("Here are the A1 start positions ")
-            print (a1_starts)
-
-            print ("Here are the A1 end positions")
-            print (a1_ends)
+            print("Here are the A1 end positions")
+            print(a1_ends)
 
             print("Here are the A2 start positions ")
             print(a2_starts)
@@ -361,7 +438,6 @@ def classify_genomes(queries):
                 if a2_start not in a1_starts:
                     start_unique = True
 
-
             for a1_end in a1_ends:
                 if a1_end not in a2_ends:
                     end_unique = True
@@ -371,35 +447,50 @@ def classify_genomes(queries):
                     end_unique = True
 
             if start_unique and end_unique:
-                print ("There is a non-overlapping A1 and A2 region")
-
-
-
-
+                print("There is a non-overlapping A1 and A2 region")
 
         if set(["TcB_expanded", "TcC_expanded"]).issubset(region_names):
-            if set(["A1_expanded", "A2_expanded"]).issubset(region_names) and start_unique and end_unique:
-
-
+            if (
+                set(["A1_expanded", "A2_expanded"]).issubset(region_names)
+                and start_unique
+                and end_unique
+            ):
 
                 # Needs to have more than one chitinase
-                if set(["Chitinase_expanded"]).issubset(region_names) and chitinase_count > 1:
-                    print ("It had A1 / A2 and chitinases, so we're tagging it as Type 2A")
-                    update_tag(query, count_check,  "Type2a")
+                if (
+                    set(["Chitinase_expanded"]).issubset(region_names)
+                    and chitinase_count > 1
+                ):
+                    print(
+                        "It had A1 / A2 and chitinases, so we're tagging it as Type 2A"
+                    )
+                    update_tag(query, count_check, "Type2a")
 
-                    genome_tag = models.GenomeTags(tag_id=query.name, tags=[count_check, "Type2a"])
+                    genome_tag = models.GenomeTags(
+                        tag_id=query.name, tags=[count_check, "Type2a"]
+                    )
                     genome_tag.save()
                 else:
-                    print ("It had A1 / A2 but no chitinases, so we're tagging it as Type 2B")
-                    update_tag(query, count_check,  "Type2b")
-                    genome_tag = models.GenomeTags(tag_id=query.name, tags=[count_check, "Type2b"])
+                    print(
+                        "It had A1 / A2 but no chitinases, so we're tagging it as Type 2B"
+                    )
+                    update_tag(query, count_check, "Type2b")
+                    genome_tag = models.GenomeTags(
+                        tag_id=query.name, tags=[count_check, "Type2b"]
+                    )
                     genome_tag.save()
 
-            elif set(["TcdA1_expanded"]).issubset(region_names) or set(["A2_expanded"]).issubset(region_names):
+            elif set(["TcdA1_expanded"]).issubset(region_names) or set(
+                ["A2_expanded"]
+            ).issubset(region_names):
                 if set("Chitinase_expanded").issubset(region_names):
-                    print("It had TcdA1 or A2 but also chitinase, so we're tagging it for further investigation")
+                    print(
+                        "It had TcdA1 or A2 but also chitinase, so we're tagging it for further investigation"
+                    )
                     update_tag(query, count_check, "TcdA1_w_Chitinase")
-                    genome_tag = models.GenomeTags(tag_id=query.name, tags=[count_check, "TcdA1_w_Chitinase"])
+                    genome_tag = models.GenomeTags(
+                        tag_id=query.name, tags=[count_check, "TcdA1_w_Chitinase"]
+                    )
                     genome_tag.save()
 
                 else:
@@ -407,47 +498,55 @@ def classify_genomes(queries):
                     for hit in query.hits:
                         if hit.region == "TcB_expanded":
                             tcB_start = hit.start
-                        elif hit.region == 'TcC_expanded':
+                        elif hit.region == "TcC_expanded":
                             tcC_start = hit.start
 
                     if tcB_start == tcC_start:
-                        print("It had TcdA1 or A2 and a fused TcB / TcC so we're classifying it as "
-                              "Type 3")
-                        update_tag(query, count_check,  "Type3")
-                        genome_tag = models.GenomeTags(tag_id=query.name, tags=[count_check, "Type3"])
+                        print(
+                            "It had TcdA1 or A2 and a fused TcB / TcC so we're classifying it as "
+                            "Type 3"
+                        )
+                        update_tag(query, count_check, "Type3")
+                        genome_tag = models.GenomeTags(
+                            tag_id=query.name, tags=[count_check, "Type3"]
+                        )
                         genome_tag.save()
                     else:
 
-                        print ("It had TcdA1 or A2 and a split TcB / TcC so we're classifying it as Type 1")
+                        print(
+                            "It had TcdA1 or A2 and a split TcB / TcC so we're classifying it as Type 1"
+                        )
                         update_tag(query, count_check, "Type1")
-                        genome_tag = models.GenomeTags(tag_id=query.name, tags=[count_check, "Type1"])
+                        genome_tag = models.GenomeTags(
+                            tag_id=query.name, tags=[count_check, "Type1"]
+                        )
                         genome_tag.save()
 
-
             else:
-                print("It had a TcB and TcC, but was missing either A1 or TcdA1, so we're classifying it as incomplete")
+                print(
+                    "It had a TcB and TcC, but was missing either A1 or TcdA1, so we're classifying it as incomplete"
+                )
                 update_tag(query, count_check, "Incomplete")
-                genome_tag = models.GenomeTags(tag_id=query.name, tags=[count_check, "Incomplete"])
+                genome_tag = models.GenomeTags(
+                    tag_id=query.name, tags=[count_check, "Incomplete"]
+                )
                 genome_tag.save()
 
         else:
-            print ("It was lacking a TcB or TcC, so we're classifying it as incomplete")
+            print("It was lacking a TcB or TcC, so we're classifying it as incomplete")
             update_tag(query, count_check, "Incomplete")
-            genome_tag = models.GenomeTags(tag_id=query.name, tags=[count_check, "Incomplete"])
+            genome_tag = models.GenomeTags(
+                tag_id=query.name, tags=[count_check, "Incomplete"]
+            )
             genome_tag.save()
 
-
-
-
-        region_names = [hit.region for hit in query.hits if 'expanded' in hit.region]
-
-
-
+        region_names = [hit.region for hit in query.hits if "expanded" in hit.region]
 
 
 def delete_genome_tags(queries):
-        for query in queries:
-            query.update(tags=[])
+    for query in queries:
+        query.update(tags=[])
+
 
 def update_tag(query, *args):
     for tag in args:

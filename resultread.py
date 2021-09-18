@@ -28,7 +28,7 @@ def expandStartPostion(record, hit_start, strand):
     # So we want to return the start position if we're on the forward strand, otherwise we want to return the
     # position just before the stop codon
 
-    print (strand)
+    print(strand)
 
     if strand == "forward":
         codon_list = ["TGA", "TAA", "TAG"]
@@ -39,10 +39,12 @@ def expandStartPostion(record, hit_start, strand):
     first_pos = hit_start
     second_pos = hit_start + 3
 
-    start_pos = first_pos # variable to keep track of all the potential start positions (methionines) we run into
+    start_pos = (
+        first_pos
+    )  # variable to keep track of all the potential start positions (methionines) we run into
 
-    while  first_pos -3 > 0:
-        codon = record.sequence[first_pos: second_pos]
+    while first_pos - 3 > 0:
+        codon = record.sequence[first_pos:second_pos]
 
         if codon in start_codons:
             start_pos = first_pos
@@ -50,18 +52,14 @@ def expandStartPostion(record, hit_start, strand):
         if codon in codon_list:
             break
 
-
-
         second_pos = first_pos
         first_pos = first_pos - 3
-
-
 
     if strand == "forward":
         # print (record.name)
         # print ('mizzy')
         # print (codon)
-        if record.sequence[start_pos: start_pos+3] in start_codons:
+        if record.sequence[start_pos : start_pos + 3] in start_codons:
             return start_pos
         else:
             # Start of hmmer hit was not a start codon, so go forwards to find it
@@ -75,7 +73,7 @@ def expandStartPostion(record, hit_start, strand):
             second_pos = hit_start + 3
 
             while first_pos + 3 < len(record.sequence):
-                codon = record.sequence[first_pos: second_pos]
+                codon = record.sequence[first_pos:second_pos]
 
                 if codon in start_codons:
                     return first_pos
@@ -83,15 +81,9 @@ def expandStartPostion(record, hit_start, strand):
                 first_pos = second_pos
                 second_pos = first_pos + 3
 
-
     else:
 
         return first_pos
-
-
-
-
-
 
 
 def expandEndPosition(record, hit_end, strand):
@@ -112,14 +104,15 @@ def expandEndPosition(record, hit_end, strand):
 
     start_codons = ["CAT", "CAA", "CAC"]
 
-
     first_pos = hit_end - 3
     second_pos = hit_end
 
-    start_pos = second_pos # Variable to keep track of all the potential start positions (methionines) we run into
+    start_pos = (
+        second_pos
+    )  # Variable to keep track of all the potential start positions (methionines) we run into
 
-    while  first_pos +3 < len(record.sequence):
-        codon = record.sequence[first_pos: second_pos]
+    while first_pos + 3 < len(record.sequence):
+        codon = record.sequence[first_pos:second_pos]
         if codon in start_codons:
             start_pos = second_pos
         if codon in codon_list:
@@ -130,24 +123,15 @@ def expandEndPosition(record, hit_end, strand):
     if strand == "forward":
         return second_pos
     else:
-        if record.sequence[start_pos: start_pos+3] in start_codons:
+        if record.sequence[start_pos : start_pos + 3] in start_codons:
             return start_pos + 3
         else:
 
             first_pos = hit_end - 3
             second_pos = hit_end
 
-            # while first_pos + 3 < len(record.sequence):
-            #     codon = record.sequence[first_pos: second_pos]
-            #
-            #     if codon == "ATG":
-            #         return first_pos
-            #
-            #     first_pos = second_pos
-            #     second_pos = first_pos + 3
-
         while first_pos - 3 > 0:
-            codon = record.sequence[first_pos: second_pos]
+            codon = record.sequence[first_pos:second_pos]
 
             if codon in start_codons:
                 return start_pos
@@ -156,42 +140,15 @@ def expandEndPosition(record, hit_end, strand):
             first_pos = first_pos - 3
 
 
-
-
-
-
-
-
-            #
-        # if record.sequence[start_pos: start_pos-3] == "CAT":
-        #    return start_pos
-        # else:
-        #     # Start of hmmer hit was not a start codon, so go forwards to find it
-        #
-        #     print ('INTERESTING!!')
-        #     first_pos = hit_end
-        #     second_pos = hit_end + 3
-        #
-        #     while first_pos - 3 > 0:
-        #         codon = record.sequence[first_pos: second_pos]
-        #
-        #         if codon == "CAT":
-        #             return first_pos + 3
-        #
-        #         second_pos = first_pos
-        #         first_pos = first_pos - 3
-
-
-
 def HMMread(path, record=None, expand=False):
     hmm_dict = {}
     record.id
 
-    for infile in glob.glob(path + '/*.fasta'):
+    for infile in glob.glob(path + "/*.fasta"):
 
         try:
-            qresult = SearchIO.read(infile, 'hmmer3-text')
-            strand_regex = re.search(r'_.{3,4}ward_\d', infile)
+            qresult = SearchIO.read(infile, "hmmer3-text")
+            strand_regex = re.search(r"_.{3,4}ward_\d", infile)
 
             if strand_regex:
                 frame = strand_regex.group()[-1]
@@ -219,15 +176,19 @@ def HMMread(path, record=None, expand=False):
 
                     # If on the backwards strand we need to update the positions to have them in correct 5' to 3'
                     elif strand == "backward":
-                        start = len(record.sequence) + correction - (hsp.hit_end * 3) - 1
-                        end = len(record.sequence) + correction  - (hsp.hit_start * 3) - 1
+                        start = (
+                            len(record.sequence) + correction - (hsp.hit_end * 3) - 1
+                        )
+                        end = (
+                            len(record.sequence) + correction - (hsp.hit_start * 3) - 1
+                        )
 
                     # If we have a genome record, it means we want to pull to the start and stop codons
                     if expand:
 
                         # Don't want to expand region1 (the Ig-fold, so don't allow it to do so
-                        if path.split("/")[-1]=='region1':
-                            print ('Override region1 expanding')
+                        if path.split("/")[-1] == "region1":
+                            print("Override region1 expanding")
                             pass
 
                         else:
@@ -235,52 +196,72 @@ def HMMread(path, record=None, expand=False):
                             start = expandStartPostion(record, start, strand)
                             end = expandEndPosition(record, end, strand)
 
-
-
                     # After expanding, we might have the exact region already identified - don't add multiple regions in
                     if str(start) + ":" + str(end) in hmm_dict.values():
-                        print ("Found two identical regions, skipping adding this record %s at position %s : %s" % (infile + "_" + str(i), str(start), str(end)))
+                        print(
+                            "Found two identical regions, skipping adding this record %s at position %s : %s"
+                            % (infile + "_" + str(i), str(start), str(end))
+                        )
 
                     else:
-                        hmm_dict[infile + "_" + str(i)] = str(start) + ':' + str(end)
+                        hmm_dict[infile + "_" + str(i)] = str(start) + ":" + str(end)
 
                         curr = models.GenomeRecords.objects().get(id=record.id)
 
                         new_reg = path.split("/")[-1]
                         if expand:
                             new_reg += "_expanded"
-                        new_score =  str(hsp.bitscore)
+                        new_score = str(hsp.bitscore)
                         new_start = str(start)
                         new_end = str(end)
                         object_id = ObjectId()
 
-                        hit = models.Hits(object_id, record.name, new_reg, new_score, new_start, new_end, expand)
-
+                        hit = models.Hits(
+                            object_id,
+                            record.name,
+                            new_reg,
+                            new_score,
+                            new_start,
+                            new_end,
+                            expand,
+                        )
 
                         # TODO Make the hit check query better here
                         add = True
                         for hit_check in record.hits:
-                            if hit_check.region == new_reg and hit.start == new_start and hit.end == new_end:
+                            if (
+                                hit_check.region == new_reg
+                                and hit.start == new_start
+                                and hit.end == new_end
+                            ):
                                 add = False
 
                         if add:
 
                             # Extract the genomic region to add to the Hit record
 
-                            print ('lets add them')
-                            print (new_start)
-                            print (new_end)
-                            sequence = record.sequence[int(new_start):int(new_end)]
+                            print("lets add them")
+                            print(new_start)
+                            print(new_end)
+                            sequence = record.sequence[int(new_start) : int(new_end)]
 
+                            hit = models.Hits(
+                                object_id,
+                                record.name,
+                                new_reg,
+                                new_score,
+                                new_start,
+                                new_end,
+                                expand,
+                                strand,
+                                sequence,
+                            )
 
-                            hit = models.Hits(object_id, record.name, new_reg, new_score, new_start, new_end, expand,
-                                              strand, sequence)
+                            print("we are adding something in")
 
-                            print ('we are adding something in')
-
-                            print (new_reg)
-                            print (hit.start)
-                            print (hit.end)
+                            print(new_reg)
+                            print(hit.start)
+                            print(hit.end)
                             curr.hits.append(hit)
                             curr.save()
                     i += 1
@@ -290,9 +271,3 @@ def HMMread(path, record=None, expand=False):
             continue
 
     return hmm_dict
-
-
-
-
-
-
