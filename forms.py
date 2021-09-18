@@ -389,7 +389,6 @@ class AutoClassifyTestForm(FlaskForm):
 class BatchDeleteForm(FlaskForm):
     delete_all_tags = SubmitField("Delete all tags")
     delete_all_hits = SubmitField("Delete all hits")
-    # delete_all_region_tags = SubmitField('Delete all tags at the region level')
 
 
 class DownloadAssociatedRegions(FlaskForm):
@@ -418,11 +417,8 @@ class DownloadRegionOrder(FlaskForm):
 
 class DownloadMLGO(FlaskForm):
     include_genome = StringField("Only include genomes tagged with - ")
-
     exclude_genome = StringField("Exclude genomes tagged with - ")
-
     include_hits = StringField("Only include hits tagged with - ")
-
     exclude_hits = StringField("Exclude hits tagged with - ", default="hidden")
 
     submit = SubmitField("Submit")
