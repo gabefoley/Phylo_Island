@@ -7,7 +7,7 @@ cffi==1.11.5
 Click==7.0
 cryptography>=3.2
 dominate==2.3.5
-Flask==1.0.2
+Flask==2.2.5
 Flask-Admin==1.5.3
 Flask-Bootstrap==3.3.7.1
 Flask-JSGlue==0.3.1
